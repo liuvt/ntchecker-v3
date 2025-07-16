@@ -1,0 +1,12 @@
+﻿@page "/checker/daily"
+@inject IAuthenService authenService
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<AuthorizedContent>
+    <ChildContent>
+        <CheckerDetailComponent userId="@authenService.UserClaimToken.Name" />
+    </ChildContent>
+    <NotAuthorizedContent>
+        <RedirectToLogin />
+    </NotAuthorizedContent>
+</AuthorizedContent>

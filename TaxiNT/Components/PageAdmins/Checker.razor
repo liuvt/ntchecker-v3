@@ -1,0 +1,12 @@
+﻿@page "/checker"
+@inject IAuthenService authenService
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<AuthorizedContent>
+    <ChildContent>
+        <CheckerComponent userId="@authenService.UserClaimToken.Name" />
+    </ChildContent>
+    <NotAuthorizedContent>
+        <RedirectToLogin />
+    </NotAuthorizedContent>
+</AuthorizedContent>
