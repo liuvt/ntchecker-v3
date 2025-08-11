@@ -10,6 +10,7 @@ using System.Reflection.Metadata;
 using TaxiNT.Data;
 using TaxiNT.Extensions;
 using TaxiNT.Libraries.Entities;
+using TaxiNT.Libraries.Extensions;
 using TaxiNT.Libraries.Models;
 using TaxiNT.Libraries.Models.GGSheets;
 using TaxiNT.Services.Interfaces;
@@ -92,26 +93,13 @@ public class BankService : IBankService
             throw new Exception($"Exists ID to patch: {bankId}");
         }
 
-        if (model.bank_NumberId != null)
-            result.bank_NumberId = model.bank_NumberId;
-
-        if (model.bank_Name != null)
-            result.bank_Name = model.bank_Name;
-
-        if (model.bank_NumberCard != null)
-            result.bank_NumberCard = model.bank_NumberCard;
-
-        if (model.bank_Type != null)
-            result.bank_Type = model.bank_Type;
-
-        if (model.bank_AccountName != null)
-            result.bank_AccountName = model.bank_AccountName;
-
-        if (model.bank_Url != null)
-            result.bank_Url = model.bank_Url;
-
-        if (model.bank_Status.HasValue)
-            result.bank_Status = model.bank_Status.Value;
+        result.bank_NumberId = model.bank_NumberId ?? result.bank_NumberId;
+        result.bank_Name = model.bank_Name ?? result.bank_Name;
+        result.bank_NumberCard = model.bank_NumberCard ?? result.bank_NumberCard;
+        result.bank_Type = model.bank_Type ?? result.bank_Type;
+        result.bank_AccountName = model.bank_AccountName ?? result.bank_AccountName;
+        result.bank_Url = model.bank_Url ?? result.bank_Url;
+        result.bank_Status = model.bank_Status ?? result.bank_Status;
 
         result.updatedAt = DateTime.Now;
 
@@ -201,29 +189,16 @@ public class BankService : IBankService
                 var existing = existingBanks.FirstOrDefault(b => b.bank_Id == input.bank_Id);
                 if (existing != null)
                 {
-                    if (input.bank_NumberId != null)
-                        existing.bank_NumberId = input.bank_NumberId;
+                    // Kiểm tra xem truyền và là giá trị rỗng hay không nếu rỗng hoặc null thì giữ nguyên giá trị cũ
+                    existing.bank_NumberId = !string.IsNullOrEmpty(input.bank_NumberId) ? input.bank_NumberId : existing.bank_NumberId;
+                    existing.bank_Name = !string.IsNullOrEmpty(input.bank_Name) ? input.bank_Name : existing.bank_Name;
+                    existing.bank_NumberCard = !string.IsNullOrEmpty(input.bank_NumberCard) ? input.bank_NumberCard : existing.bank_NumberCard;
+                    existing.bank_Type = !string.IsNullOrEmpty(input.bank_Type) ? input.bank_Type : existing.bank_Type;
+                    existing.bank_AccountName = !string.IsNullOrEmpty(input.bank_AccountName) ? input.bank_AccountName : existing.bank_AccountName;
+                    existing.bank_Url = !string.IsNullOrEmpty(input.bank_Url) ? input.bank_Url : existing.bank_Url;
 
-                    if (input.bank_Name != null)
-                        existing.bank_Name = input.bank_Name;
-
-                    if (input.bank_NumberCard != null)
-                        existing.bank_NumberCard = input.bank_NumberCard;
-
-                    if (input.bank_Type != null)
-                        existing.bank_Type = input.bank_Type;
-
-                    if (input.bank_AccountName != null)
-                        existing.bank_AccountName = input.bank_AccountName;
-
-                    if (input.bank_Url != null)
-                        existing.bank_Url = input.bank_Url;
-
-                    if (input.bank_Status.HasValue)
-                        existing.bank_Status = input.bank_Status.Value;
-
+                    existing.bank_Status = input.bank_Status ?? existing.bank_Status;
                     existing.updatedAt = now;
-
                     result.UpdateResults.Add(existing);
                 }
                 else
@@ -256,7 +231,6 @@ public class BankService : IBankService
         }
 
         await context.SaveChangesAsync();
-
         return result;
     }
     #endregion
