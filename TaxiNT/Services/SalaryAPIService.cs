@@ -1,4 +1,5 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿
+using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using TaxiNT.Libraries.Models.GGSheets;
@@ -19,6 +20,7 @@ public class SalaryAPIService : ISalaryAPIService
 
     // For Sheet
     private readonly string sheetSALARIES = "SALARIES";
+    private readonly string sheetSALARYDETAILS = "SALARYDETAILS";
 
     public SalaryAPIService()
     {
@@ -44,7 +46,7 @@ public class SalaryAPIService : ISalaryAPIService
     private async Task<List<Salary>> Gets()
     {
         var dts = new List<Salary>();
-        var range = $"{sheetSALARIES}!A2:Y";
+        var range = $"{sheetSALARIES}!A2:Z";
         var values = await sheetsService.ltvGetSheetValuesAsync(SpreadSheetId, range);
         if (values == null || values.Count == 0)
         {
@@ -71,15 +73,16 @@ public class SalaryAPIService : ISalaryAPIService
                 deductForVMV = item.ltvGetValueString(13),//Lỗi bảo quản xe: Vehicle Maintenance Violation
                 deductForUV = item.ltvGetValueString(14),//Lỗi đồng phục: Uniform Violation
                 deductForSHV = item.ltvGetValueString(15),//Lỗi giao ca: Shift Handover Violation
-                deductForChargingPenalty = item.ltvGetValueString(16),//Lỗi giao ca: Charging Penalty
+                deductForChargingPenalty = item.ltvGetValueString(16),// Phạt sạt: Charging Penalty
                 deductForTollPayment = item.ltvGetValueString(17), //Trừ tiền qua trạm : Deduction for Toll Payment
-                deductForOrderSalaryAdvance = item.ltvGetValueString(18),//Trừ tạm ứng: nợ doanh thu, hoặc ứng tiền vì mục đích nào đó, kế toán cho phép
-                deductForNegativeSalary = item.ltvGetValueString(19),//Trừ âm lương: Nợ tiền tháng trước, qua tháng này trừ lại vào lương
-                deductForOrder = item.ltvGetValueString(20),//Trừ khác
-                noteDeductOrder = item.ltvGetValueString(21),//Ghi chú trừ khác
-                deductTotal = item.ltvGetValueString(22), //Tổng trừ
-                salaryNet = item.ltvGetValueString(23),//Lương thực nhận
-                salaryDate = item.ltvGetValueString(24),//Tháng/năm
+                deductForCharging = item.ltvGetValueString(18),//Sạt pin
+                deductForOrderSalaryAdvance = item.ltvGetValueString(19),//Trừ tạm ứng: nợ doanh thu, hoặc ứng tiền vì mục đích nào đó, kế toán cho phép
+                deductForNegativeSalary = item.ltvGetValueString(20),//Trừ âm lương: Nợ tiền tháng trước, qua tháng này trừ lại vào lương
+                deductForOrder = item.ltvGetValueString(21),//Trừ khác
+                noteDeductOrder = item.ltvGetValueString(22),//Ghi chú trừ khác
+                deductTotal = item.ltvGetValueString(23), //Tổng trừ
+                salaryNet = item.ltvGetValueString(24),//Lương thực nhận
+                salaryDate = item.ltvGetValueString(25),//Tháng/năm
             });
         }
 
@@ -97,6 +100,45 @@ public class SalaryAPIService : ISalaryAPIService
             throw new Exception("Không tìm thấy dữ liệu: {userId}");
         }
         return listSalary;
+    }
+    #endregion
+
+    #region Salary details
+    private async Task<List<SalaryDetails>> GetsSalaryDetails()
+    {
+        var dts = new List<SalaryDetails>();
+        var range = $"{sheetSALARYDETAILS}!A2:F";
+        var values = await sheetsService.ltvGetSheetValuesAsync(SpreadSheetId, range);
+        if (values == null || values.Count == 0)
+        {
+            throw new Exception("Không có dữ liệu sheet.");
+        }
+
+        foreach (var item in values)
+        {
+            dts.Add(new SalaryDetails
+            {
+                userId = item.ltvGetValueString(0),
+                revenue = item.ltvGetValueString(1),
+                type = item.ltvGetValueString(2),
+                salaryBase = item.ltvGetValueString(3),
+                daterevenues = item.ltvGetValueString(4),
+                createdAt = item.ltvGetValueString(5),
+            });
+        }
+
+        return dts;
+    }
+
+    public async Task<List<SalaryDetails>> GetSalaryDetails(string userId)
+    {
+        var dts = await GetsSalaryDetails();
+        var listSalaryDetails = dts.Where(e => e.userId.Equals(userId, StringComparison.OrdinalIgnoreCase)).ToList();
+        if (listSalaryDetails == null)
+        {
+            throw new Exception("Không tìm thấy dữ liệu: {userId}");
+        }
+        return listSalaryDetails;
     }
     #endregion
 }

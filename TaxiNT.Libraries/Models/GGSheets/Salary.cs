@@ -17,8 +17,9 @@ public class Salary
     public string deductForVMV { get; set; } = string.Empty;//Lỗi bảo quản xe: Vehicle Maintenance Violation
     public string deductForUV { get; set; } = string.Empty;//Lỗi đồng phục: Uniform Violation
     public string deductForSHV { get; set; } = string.Empty; //Lỗi giao ca: Shift Handover Violation
-    public string deductForChargingPenalty { get; set; } = string.Empty; //Lỗi giao ca: Charging Penalty
+    public string deductForChargingPenalty { get; set; } = string.Empty; //phạt sạt: Charging Penalty
     public string deductForTollPayment { get; set; } = string.Empty;//Trừ tiền qua trạm : Deduction for Toll Payment
+    public string deductForCharging { get; set; } = string.Empty;//Sat pin
     public string deductForOrderSalaryAdvance { get; set; } = string.Empty; //Trừ tạm ứng: nợ doanh thu, hoặc ứng tiền vì mục đích nào đó, kế toán cho phép
     public string deductForNegativeSalary { get; set; } = string.Empty; //Trừ âm lương: Nợ tiền tháng trước, qua tháng này trừ lại vào lương
     public string deductForOrder { get; set; } = string.Empty; //Trừ khác
@@ -33,4 +34,14 @@ public class DeductionItem
     public string Name { get; set; } = string.Empty;
     public string NameAlias { get; set; } = string.Empty;
     public string Amount { get; set; } = string.Empty;
+}
+
+public class SalaryDetails
+{
+    public string userId { get; set; } = string.Empty; // Mã tài xế
+    public string revenue { get; set; } = string.Empty;// Doanh thu
+    public string type { get; set; } = string.Empty; // Loai hinh kinh doanh LƯƠNG NGÀY - LƯƠNG THÁNG
+    public string salaryBase { get; set; } = string.Empty; // Sau mức ăn chia
+    public string daterevenues { get; set; } = string.Empty;
+    public string createdAt { get; set; } = string.Empty;
 }

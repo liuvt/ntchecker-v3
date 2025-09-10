@@ -30,5 +30,20 @@ public class SalaryController : ControllerBase
             return StatusCode(500, "Internal server error");
         }
     }
-   
+
+    [HttpGet("{userId}/Details")]
+    public async Task<IActionResult> GetSalaryDetails(string userId)
+    {
+        try
+        {
+            var result = await context.GetSalaryDetails(userId);
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error in GetsRevenueDetail");
+            return StatusCode(500, "Internal server error");
+        }
+    }
+
 }

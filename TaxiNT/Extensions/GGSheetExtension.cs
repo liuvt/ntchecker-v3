@@ -91,11 +91,11 @@ public static class GGSheetExtension
     /// <summary>
     /// Thêm dữ liệu mới vào cuối bảng
     /// </summary>
-    public static async Task AppendSheetValuesAsync(this SheetsService service, string spreadsheetId, string range, ValueRange valueRange)
+    public static async Task ltvAppendSheetValuesAsync(this SheetsService service, string spreadsheetId, string range, ValueRange valueRange)
     {
         var appendRequest = service.Spreadsheets.Values.Append(valueRange, spreadsheetId, range);
         appendRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.USERENTERED;
-        appendRequest.InsertDataOption = SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS;
+        appendRequest.InsertDataOption = SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS; //Tạo thêm hàng mới nếu không còn đủ hàng
         await appendRequest.ExecuteAsync();
     }
 

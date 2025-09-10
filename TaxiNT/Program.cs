@@ -117,6 +117,9 @@ builder.Services.AddScoped<IGGSBankService, GGSBankService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderByHistoryService, OrderByHistoryService>();
 builder.Services.AddScoped<ISalaryAPIService, SalaryAPIService>();
+
+//Zalo to save GGS
+builder.Services.AddScoped<IZaloService, ZaloService>();
 #endregion
 
 #region Font-end Register services
