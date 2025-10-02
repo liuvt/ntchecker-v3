@@ -54,7 +54,7 @@
                 {
                     <!-- Table Contracts -->
                     <div class="hidden overflow-x-auto rounded-xl bg-green-50 p-1 shadow-xl inset-ring inset-ring-gray-950/5 sm:block dark:bg-white/10 dark:inset-ring-white/10">
-                        <div class="not-prose overflow-auto rounded-lg bg-white outline outline-white/5 dark:bg-gray-950/50">
+                        <div class="not-prose overflow-auto rounded-lg bg-white outline outline-white/5">
                             <p class="mb-2 flex pt-2 pl-3 text-xl font-semibold text-blue-700">
                                 <img width="28" src="../icons/checkerdetail/contract.png" />
                                 HỢP ĐỒNG <span class="align-top text-xs">(SL: @checkerDetailDto.countContract)</span>
@@ -76,14 +76,14 @@
                                 {
                                     <tbody>
                                         <!-- Loop for contract rows here -->
-                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">@(contracts.IndexOf(item) + 1)</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.ctKey</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.ctDefaultAmount.ltvVNDCurrency()</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.ctDefaultDistance</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.ctOverDistance</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-right text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.ctSurcharge.ltvVNDCurrency()</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.ctPromotion</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.ctTotalPrice.ltvVNDCurrency()</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500">@(contracts.IndexOf(item) + 1)</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500">@item.ctKey</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500">@item.ctDefaultAmount.ltvVNDCurrency()</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500">@item.ctDefaultDistance</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500">@item.ctOverDistance</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-right text-gray-500">@item.ctSurcharge.ltvVNDCurrency()</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500">@item.ctPromotion</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500">@item.ctTotalPrice.ltvVNDCurrency()</td>
                                     </tbody>
                                 }
 
@@ -123,7 +123,7 @@
                 {
                     <!-- Table Contracts -->
                     <div class="hidden overflow-x-auto rounded-xl bg-green-50 p-1 shadow-xl inset-ring inset-ring-gray-950/5 sm:block dark:bg-white/10 dark:inset-ring-white/10">
-                        <div class="not-prose overflow-auto rounded-lg bg-white outline outline-white/5 dark:bg-gray-950/50">
+                        <div class="not-prose overflow-auto rounded-lg bg-white outline outline-white/5">
                             <p class="mb-2 flex pt-2 pl-3 text-xl font-semibold text-blue-700">
                                 <img width="28" src="../icons/checkerdetail/log.png" />
                                 CUỐC LẺ <span class="align-top text-xs">(SL: @checkerDetailDto.countTimepices)</span>
@@ -144,14 +144,14 @@
                                 @foreach (var item in timepieces)
                                 {
                                     <tbody>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500 dark:border-gray-700 dark:text-gray-400">@(timepieces.IndexOf(item) + 1)</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 pl-4 text-left text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.tpTimeStart</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 pl-4 text-left text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.tpTimeEnd</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-left text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.tpDistance</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-right text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.tpPrice.ltvVNDCurrency()</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-left text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.tpPickUp</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-left text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.tpDropOut</td>
-                                    <td class="border-b border-gray-100 px-2 py-1 text-left text-gray-500 dark:border-gray-700 dark:text-gray-400">@item.tpType</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-center text-gray-500">@(timepieces.IndexOf(item) + 1)</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 pl-4 text-left text-gray-500">@item.tpTimeStart</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 pl-4 text-left text-gray-500">@item.tpTimeEnd</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-left text-gray-500">@item.tpDistance</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-right text-gray-500">@item.tpPrice.ltvVNDCurrency()</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-left text-gray-500">@item.tpPickUp</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-left text-gray-500">@item.tpDropOut</td>
+                                    <td class="border-b border-gray-100 px-2 py-1 text-left text-gray-500">@item.tpType</td>
                                     </tbody>
                                 }
 
@@ -195,7 +195,7 @@
 
                 <!-- Footer Summary -->
                 <div class="mt-4 overflow-x-auto rounded-xl bg-green-50 p-1 shadow-xl inset-ring inset-ring-gray-950/5 dark:bg-white/10 dark:inset-ring-white/10">
-                    <div class="not-prose overflow-auto rounded-lg bg-white outline outline-white/5 dark:bg-gray-950/50">
+                    <div class="not-prose overflow-auto rounded-lg bg-white outline outline-white/5">
                         <div class="flex flex-col items-center justify-between gap-4 p-2 md:flex-row">
                             <div class="h-full w-full">
                                 <p class="text-lg font-bold text-gray-700">HỢP ĐỒNG: @checkerDetailDto.TotalPriceContract.ltvVNDCurrency() <span class="align-top text-xs"> (SL: @checkerDetailDto.countContract)</span></p>

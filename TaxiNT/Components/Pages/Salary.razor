@@ -76,21 +76,21 @@
             </div>
             <!-- Bảng chuẩn -->
             <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead class="bg-gray-50 dark:bg-gray-800">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-200">Ngày</th>
-                            <th class="px-4 py-3 text-right text-sm font-medium text-gray-700 dark:text-gray-200">Doanh thu</th>
-                            <th class="px-4 py-3 text-right text-sm font-medium text-gray-700 dark:text-gray-200">Sau mức ăn chia</th>
+                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Ngày</th>
+                            <th class="px-4 py-3 text-right text-sm font-medium text-gray-700">Doanh thu</th>
+                            <th class="px-4 py-3 text-right text-sm font-medium text-gray-700">Sau mức ăn chia</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-800 dark:bg-gray-900">
+                    <tbody class="divide-y divide-gray-200 bg-white">
                         @foreach (var item in salaryDetails)
                         {
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800">
+                            <tr class="hover:bg-gray-50">
                                 <td class="px-4 py-3 text-sm whitespace-nowrap">@item.daterevenues</td>
-                                <td class="px-4 py-3 text-right text-sm whitespace-nowrap text-green-700 dark:text-green-400">@item.revenue</td>
-                                <td class="px-4 py-3 text-right text-sm whitespace-nowrap text-green-700 dark:text-green-400">@item.salaryBase</td>
+                                <td class="px-4 py-3 text-right text-sm whitespace-nowrap text-green-700">@item.revenue</td>
+                                <td class="px-4 py-3 text-right text-sm whitespace-nowrap text-green-700">@item.salaryBase</td>
                             </tr>
                         }
                     </tbody>

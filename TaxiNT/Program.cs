@@ -120,6 +120,7 @@ builder.Services.AddScoped<ISalaryAPIService, SalaryAPIService>();
 
 //Zalo to save GGS
 builder.Services.AddScoped<IZaloService, ZaloService>();
+builder.Services.AddScoped<ISwitchboardService, SwitchboardService>();
 #endregion
 
 #region Font-end Register services
