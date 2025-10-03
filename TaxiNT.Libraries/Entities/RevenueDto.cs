@@ -12,8 +12,10 @@ public class RevenueDto
     public decimal walletGSM { get; set; } //Ví
     public decimal discountGSM { get; set; } //Giảm giá GSM
     public decimal discountNT { get; set; } //Giảm giá NT
-    public string createdAt { get; set; } //Ngày nợp tiền
-    public string typeCar { get; set; } //Loại hình: Khoán - không khoán
+    public string createdAt { get; set; } = string.Empty;//Ngày nợp tiền
+    public string typeCar { get; set; } = string.Empty; //Loại hình: Khoán - không khoán
+    public string area { get; set; } = string.Empty; 
+    public string rank { get; set; } = string.Empty;
 }
 
 

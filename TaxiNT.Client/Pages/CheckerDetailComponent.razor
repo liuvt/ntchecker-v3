@@ -8,17 +8,13 @@
     <div class="mb-4 text-center">
         <p class="flex items-center justify-center gap-2 text-xl font-semibold text-green-600 md:text-2xl">
             <img width="32" src="../icons/checkerdetail/bill-v2.png" alt="Đang tải..." />
-            PHIẾU CHECKER v2.2
+            PHIẾU CHECKER v3.1
         </p>
         <p class="text-sm font-bold text-red-400 italic underline">@(revenue?.createdAt ?? "")</p>
     </div>
     @if (StateMessage != string.Empty)
     {
         <div class="flex justify-center">@StateMessage</div>
-    }
-    else if (revenue.typeCar == "Khoán điện")
-    {
-        <div class="flex justify-center">ĐÂY LÀ XE KHOÁN KHÔNG CÓ PHIẾU</div>
     }
     else if (isLoaded)
     {
@@ -35,7 +31,10 @@
                     </p>
                     <p class="flex items-center text-base text-green-600 md:text-lg">
                         <img width="18" src="../icons/checkerdetail/revenue-month.png" alt="Đang tải..." />
-                        <span class="ml-1 font-medium">Doanh thu tổng: @revenue.revenueByMonth.ltvVNDCurrency()</span>
+                        <span class="ml-1 font-medium">Doanh thu tháng: @revenue.revenueByMonth.ltvVNDCurrency()</span>
+                    </p>
+                    <p class="flex items-center text-base text-green-600 md:text-lg">
+                        <span class="ml-1 font-medium">@ranking </span>
                     </p>
                     <div class="md:hidden">
                         <button class="mt-2 flex items-center gap-2 rounded bg-blue-500 px-1 py-1 text-white hover:bg-blue-600" @onclick="forceDesktopView">
@@ -275,6 +274,8 @@
     public string isType { get; set; } = string.Empty; // Loại xe khoán hay không khoán
     public string StateMessage { get; set; } = string.Empty; // Thông báo trạng thái lỗi hoặc thông tin
 
+    public string ranking { get; set; } = string.Empty; // Xếp hạng tài xế
+
     private PersistingComponentStateSubscription subscription;
 
     protected override async Task OnInitializedAsync()
@@ -290,11 +291,13 @@
                 //Gọi API nếu chưa có data
                 Logger.LogInformation("Không có dữ liệu AppState, đang gọi API từ server");
                 checkerDetailDto = await checkerDetailService.GetCheckerDetail(userId);
+                ranking = (checkerDetailDto.revenue.rank != "") ? $"Xếp hạng: {checkerDetailDto.revenue.rank}" : string.Empty;
             }
             else
             {
                 Logger.LogInformation("Tìm thấy dữ liệu AppState, không cần gọi API");
                 checkerDetailDto = _checkerDetailDto!;
+                ranking = (checkerDetailDto.revenue.rank != "") ? $"Xếp hạng: {checkerDetailDto.revenue.rank}" : string.Empty;
             }
 
             await HandleDisplayData(checkerDetailDto);
@@ -311,14 +314,11 @@
     private async Task HandleDisplayData(CheckerDetailDto _data)
     {
         revenue = _data.revenue;
-        isType = revenue.typeCar;
-        if (isType != "Khoán điện") // Nếu không phải xe khoán thực hiện load dữ liệu
-        {
-            contracts = _data.contracts;
-            timepieces = _data.timepieces;
-            totalAmount = (_data.TotalPriceContract + _data.TotalPriceTimepices)
-                                    .ltvVNDCurrency();
-        }
+
+        contracts = _data.contracts;
+        timepieces = _data.timepieces;
+        totalAmount = (_data.TotalPriceContract + _data.TotalPriceTimepices)
+                                .ltvVNDCurrency();
         isLoaded = true;
     }
 

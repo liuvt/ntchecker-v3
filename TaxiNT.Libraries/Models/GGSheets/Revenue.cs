@@ -20,6 +20,8 @@ public class RevenueDetail
     public string bank_Id { get; set; } = string.Empty;
     public string createdAt { get; set; } = string.Empty;
     public string typeCar { get; set; } = string.Empty;
+    public string Area { get; set; } = string.Empty;
+    public string Rank { get; set; } = string.Empty;
 }
 
 public class Revenue
@@ -43,4 +45,6 @@ public class Revenue
     public string discountNT => revenues.ltvSumFieldValues<RevenueDetail>(e => e.discountNT); // Tiền giảm giá Nam Thắng
     public string createdAt => revenues?.FirstOrDefault().createdAt ?? string.Empty;
     public string typeCar => revenues?.FirstOrDefault().typeCar ?? string.Empty; // XE ĐIỆN HOẶC XE KHOÁN
+    public string area => revenues?.FirstOrDefault().Area ?? string.Empty; // XE ĐIỆN HOẶC XE KHOÁN
+    public string rank => revenues?.FirstOrDefault().Rank ?? string.Empty; // XE ĐIỆN HOẶC XE KHOÁN
 }

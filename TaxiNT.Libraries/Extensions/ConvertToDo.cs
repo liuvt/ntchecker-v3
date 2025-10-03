@@ -22,7 +22,9 @@ public static class ConvertToDo
             discountGSM = _revenue.discountGSM.ltvVNDCurrencyToDecimal(),
             discountNT = _revenue.discountNT.ltvVNDCurrencyToDecimal(),
             createdAt = _revenue.createdAt,
-            typeCar = _revenue.typeCar
+            typeCar = _revenue.typeCar,
+            area = _revenue.area,
+            rank = _revenue.rank,
         };
 
         //LinQ convert timepiece to timepieceDto

@@ -50,7 +50,7 @@ public class OrderService : IOrderService
     private async Task<List<RevenueDetail>> GetsRevenueDetail()
     {
         var dts = new List<RevenueDetail>();
-        var range = $"{sheetREVENUE}!A2:O";
+        var range = $"{sheetREVENUE}!A2:R";
         var values = await sheetsService.ltvGetSheetValuesAsync(SpreadSheetId, range);
         if (values == null || values.Count == 0)
         {
@@ -76,9 +76,11 @@ public class OrderService : IOrderService
                 bank_Id = item.ltvGetValueString(12),
                 createdAt = item.ltvGetValueString(13),
                 typeCar = item.ltvGetValueString(14),
+                Area = item.ltvGetValueString(15),
+                Rank = item.ltvGetValueString(16),
             });
+           
         }
-
         return dts;
     }
 

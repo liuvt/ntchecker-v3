@@ -27,6 +27,8 @@ public class CheckerDetailService : ICheckerDetailService
 
                 var result = await response.Content.ReadFromJsonAsync<CheckerDetailDto>();
 
+                Console.WriteLine($"GetCheckerDetail: {result}");
+
                 if (result == null)
                     return new CheckerDetailDto();
 
