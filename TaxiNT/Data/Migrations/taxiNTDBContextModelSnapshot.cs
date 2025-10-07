@@ -246,6 +246,56 @@ namespace TaxiNT.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("TaxiNT.Libraries.Models.ContractDetail", b =>
+                {
+                    b.Property<string>("ctId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("createdAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("ctAmout")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ctDefaultDistance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ctKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ctOverDistance")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("ctPromotion")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ctSurcharge")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("numberCar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("shiftworkId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal?>("totalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("userId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ctId");
+
+                    b.HasIndex("shiftworkId");
+
+                    b.ToTable("Contracts");
+                });
+
             modelBuilder.Entity("TaxiNT.Libraries.Models.ModelBank", b =>
                 {
                     b.Property<string>("bank_Id")
@@ -287,6 +337,129 @@ namespace TaxiNT.Data.Migrations
                     b.HasKey("bank_Id");
 
                     b.ToTable("Banks");
+                });
+
+            modelBuilder.Entity("TaxiNT.Libraries.Models.ShiftWork", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Area")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("SauMucAnChia")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("arrearsOther")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("bank_Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("createdAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("discountGSM")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("discountNT")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("discountOther")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("numberCar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("qrContext")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("qrUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("revenueByDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("revenueByMonth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("totalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("typeCar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("walletGSM")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShiftWorks");
+                });
+
+            modelBuilder.Entity("TaxiNT.Libraries.Models.TripDetail", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("NumberCar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("createdAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("shiftworkId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double?>("tpDistance")
+                        .HasColumnType("float");
+
+                    b.Property<string>("tpDropOut")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("tpPickUp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("tpPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("tpTimeEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("tpTimeStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("tpType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("shiftworkId");
+
+                    b.ToTable("Trips");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -338,6 +511,31 @@ namespace TaxiNT.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TaxiNT.Libraries.Models.ContractDetail", b =>
+                {
+                    b.HasOne("TaxiNT.Libraries.Models.ShiftWork", "ShiftWork")
+                        .WithMany("Contracts")
+                        .HasForeignKey("shiftworkId");
+
+                    b.Navigation("ShiftWork");
+                });
+
+            modelBuilder.Entity("TaxiNT.Libraries.Models.TripDetail", b =>
+                {
+                    b.HasOne("TaxiNT.Libraries.Models.ShiftWork", "ShiftWork")
+                        .WithMany("Trips")
+                        .HasForeignKey("shiftworkId");
+
+                    b.Navigation("ShiftWork");
+                });
+
+            modelBuilder.Entity("TaxiNT.Libraries.Models.ShiftWork", b =>
+                {
+                    b.Navigation("Contracts");
+
+                    b.Navigation("Trips");
                 });
 #pragma warning restore 612, 618
         }

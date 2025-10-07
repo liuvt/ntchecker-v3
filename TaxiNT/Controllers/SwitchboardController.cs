@@ -2,8 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using TaxiNT.Libraries.Models;
-using TaxiNT.Services;
+using TaxiNT.Libraries.Models.Webhooks;
 using TaxiNT.Services.Interfaces;
 
 namespace TaxiNT.Controllers;
@@ -13,15 +12,13 @@ namespace TaxiNT.Controllers;
 public class SwitchboardController : ControllerBase
 {
     //Get API Server
-    private readonly IConfiguration configuration;
     private readonly ISwitchboardService switchboardService;
-    public SwitchboardController(IConfiguration _configuration, ISwitchboardService _switchboardService)
+    public SwitchboardController(ISwitchboardService _switchboardService)
     {
-        this.configuration = _configuration;
         this.switchboardService = _switchboardService;
     }
 
-    [HttpPost("switchboard-webhook")] //https://taxinamthang.com/api/Switchboard/switchboard-webhook/
+    [HttpGet("switchboard-webhook")] //https://taxinamthang.com/api/Switchboard/switchboard-webhook/
     public async Task<IActionResult> Receive([FromForm] Dictionary<string, string> formData)
     {
         if (!formData.ContainsKey("checksum"))

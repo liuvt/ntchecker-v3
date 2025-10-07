@@ -1,4 +1,4 @@
-﻿using TaxiNT.Libraries.Models;
+﻿using TaxiNT.Libraries.Models.Webhooks;
 
 namespace TaxiNT.Services.Interfaces
 {

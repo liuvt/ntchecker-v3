@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using TaxiNT.Libraries.Models;
+using TaxiNT.Libraries.Models.Webhooks;
 using TaxiNT.Services.Interfaces;
 
 namespace TaxiNT.Controllers;

@@ -5,7 +5,7 @@ using Google.Apis.Sheets.v4.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Text.Json;
 using TaxiNT.Extensions;
-using TaxiNT.Libraries.Models;
+using TaxiNT.Libraries.Models.Webhooks;
 using TaxiNT.Services.Interfaces;
 
 namespace TaxiNT.Services

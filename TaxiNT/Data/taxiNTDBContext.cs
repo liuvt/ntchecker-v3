@@ -18,6 +18,9 @@ public partial class taxiNTDBContext : IdentityDbContext<AppUser>
 
     //Call Model to create table in database
     public virtual DbSet<ModelBank> Banks { get; set; } = null!;
+    public virtual DbSet<TripDetail> Trips { get; set; } = null!;
+    public virtual DbSet<ContractDetail> Contracts { get; set; } = null!;
+    public virtual DbSet<ShiftWork> ShiftWorks { get; set; } = null!;
 
     //Config to connection sql server
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,6 +35,7 @@ public partial class taxiNTDBContext : IdentityDbContext<AppUser>
 
     }
 }
+
 //Update tool: dotnet tool update --global dotnet-ef
 
 //Create mirations: dotnet ef migrations add Init -o Data/Migrations

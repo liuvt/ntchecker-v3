@@ -69,11 +69,41 @@ namespace TaxiNT.Data.Migrations
                     bank_AccountName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     bank_Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     bank_Status = table.Column<bool>(type: "bit", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    updatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Banks", x => x.bank_Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShiftWorks",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    numberCar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    userId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    revenueByMonth = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    revenueByDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    qrContext = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    qrUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    discountOther = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    arrearsOther = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    totalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    walletGSM = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    discountGSM = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    discountNT = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    bank_Id = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    typeCar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Area = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rank = table.Column<int>(type: "int", nullable: false),
+                    SauMucAnChia = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShiftWorks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -182,6 +212,60 @@ namespace TaxiNT.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Contracts",
+                columns: table => new
+                {
+                    ctId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    numberCar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ctKey = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ctAmout = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ctDefaultDistance = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ctOverDistance = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ctSurcharge = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ctPromotion = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    totalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    userId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    shiftworkId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contracts", x => x.ctId);
+                    table.ForeignKey(
+                        name: "FK_Contracts_ShiftWorks_shiftworkId",
+                        column: x => x.shiftworkId,
+                        principalTable: "ShiftWorks",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trips",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    NumberCar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    tpTimeStart = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    tpTimeEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    tpDistance = table.Column<double>(type: "float", nullable: true),
+                    tpPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    tpPickUp = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    tpDropOut = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    tpType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    userId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    shiftworkId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trips", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Trips_ShiftWorks_shiftworkId",
+                        column: x => x.shiftworkId,
+                        principalTable: "ShiftWorks",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -220,6 +304,16 @@ namespace TaxiNT.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contracts_shiftworkId",
+                table: "Contracts",
+                column: "shiftworkId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trips_shiftworkId",
+                table: "Trips",
+                column: "shiftworkId");
         }
 
         /// <inheritdoc />
@@ -244,10 +338,19 @@ namespace TaxiNT.Data.Migrations
                 name: "Banks");
 
             migrationBuilder.DropTable(
+                name: "Contracts");
+
+            migrationBuilder.DropTable(
+                name: "Trips");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "ShiftWorks");
         }
     }
 }

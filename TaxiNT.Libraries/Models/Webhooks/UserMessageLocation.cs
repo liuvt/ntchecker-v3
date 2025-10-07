@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TaxiNT.Libraries.Models
+namespace TaxiNT.Libraries.Models.Webhooks
 {
     public class UserMessageLocation
     {

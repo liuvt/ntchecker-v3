@@ -3,9 +3,9 @@ using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 using TaxiNT.Extensions;
-using TaxiNT.Libraries.Models;
 using TaxiNT.Services.Interfaces;
 using System.Text.Json;
+using TaxiNT.Libraries.Models.Webhooks;
 
 namespace TaxiNT.Services
 {

@@ -32,9 +32,9 @@ public class ShiftWork
 
     public string Area { get; set; } = string.Empty;
     public int Rank { get; set; }
-    public decimal SauMucAnChia { get; set; }
+    public decimal SauMucAnChia { get; set; } //Không dùng
 
     // Liên kết
-    public List<TripDetail>? Trips { get; set; } // 1-m
-    public List<ContractDetail>? Contracts { get; set; } // 1-m
+    public List<TripDetail>? Trips { get; set; } // 1-n
+    public List<ContractDetail>? Contracts { get; set; } // 1-n
 }

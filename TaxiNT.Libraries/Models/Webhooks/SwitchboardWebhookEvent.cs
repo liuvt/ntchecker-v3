@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaxiNT.Libraries.Models
+namespace TaxiNT.Libraries.Models.Webhooks
 {
     public class SwitchboardWebhookEvent
     {
