@@ -32,12 +32,12 @@ public class ShiftWorkService : IShiftWorkService
 
         try
         {
-            int totalTrips = 0; // Đếm tổng số Trip được thêm
-            int totalContracts = 0; // Đếm tổng số Contract được thêm
+            int totalTrips = 0;
+            int totalContracts = 0;
 
             foreach (var group in data.ShiftWorks)
             {
-                var sw = group.ShiftWork; 
+                var sw = group.ShiftWork;
                 if (sw.createdAt == null)
                     throw new Exception("ShiftWork.createdAt is required to determine WorkDate.");
 
@@ -45,7 +45,7 @@ public class ShiftWorkService : IShiftWorkService
                 var area = sw.Area;
                 var userId = sw.userId;
 
-                // === 1️⃣ Tìm ShiftWork hiện có theo Area + User + Ngày ===
+                // Tìm ShiftWork hiện có theo Area + User + Ngày
                 var existingShift = await _context.ShiftWorks
                     .FirstOrDefaultAsync(x =>
                         x.Area == area &&
@@ -57,8 +57,26 @@ public class ShiftWorkService : IShiftWorkService
 
                 if (existingShift != null)
                 {
-                    // Update dữ liệu
-                    _context.Entry(existingShift).CurrentValues.SetValues(sw);
+                    // --- Update từng property để EF nhận thay đổi ---
+                    existingShift.numberCar = sw.numberCar;
+                    existingShift.userId = sw.userId;
+                    existingShift.revenueByMonth = sw.revenueByMonth;
+                    existingShift.revenueByDate = sw.revenueByDate;
+                    existingShift.qrContext = sw.qrContext;
+                    existingShift.qrUrl = sw.qrUrl;
+                    existingShift.discountOther = sw.discountOther;
+                    existingShift.arrearsOther = sw.arrearsOther;
+                    existingShift.totalPrice = sw.totalPrice;
+                    existingShift.walletGSM = sw.walletGSM;
+                    existingShift.discountGSM = sw.discountGSM;
+                    existingShift.discountNT = sw.discountNT;
+                    existingShift.bank_Id = sw.bank_Id;
+                    existingShift.createdAt = sw.createdAt;
+                    existingShift.typeCar = sw.typeCar;
+                    existingShift.Area = sw.Area;
+                    existingShift.Rank = sw.Rank;
+                    existingShift.SauMucAnChia = sw.SauMucAnChia;
+
                     targetShift = existingShift;
                 }
                 else
@@ -71,15 +89,14 @@ public class ShiftWorkService : IShiftWorkService
                 await _context.SaveChangesAsync();
                 var shiftworkId = targetShift.Id;
 
-                // === 2️⃣ Xóa dữ liệu cũ của ShiftWork ===
+                // --- Xóa dữ liệu cũ ---
                 var oldTrips = _context.Trips.Where(t => t.shiftworkId == shiftworkId);
                 var oldContracts = _context.Contracts.Where(c => c.shiftworkId == shiftworkId);
-
                 _context.Trips.RemoveRange(oldTrips);
                 _context.Contracts.RemoveRange(oldContracts);
                 await _context.SaveChangesAsync();
 
-                // === 3️⃣ Gán shiftworkId mới cho dữ liệu chi tiết ===
+                // --- Gán shiftworkId cho dữ liệu mới ---
                 foreach (var trip in group.Trips)
                 {
                     trip.shiftworkId = shiftworkId;
@@ -92,7 +109,7 @@ public class ShiftWorkService : IShiftWorkService
                     contract.createdAt ??= DateTime.UtcNow;
                 }
 
-                // === 4️⃣ Thêm dữ liệu mới ===
+                // --- Thêm dữ liệu mới ---
                 await _context.Trips.AddRangeAsync(group.Trips);
                 await _context.Contracts.AddRangeAsync(group.Contracts);
                 await _context.SaveChangesAsync();
