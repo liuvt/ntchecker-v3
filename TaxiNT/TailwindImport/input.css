@@ -6,4 +6,7 @@
     --font-body: Trirong, sans-serif;
 }
 
-/* npx @tailwindcss/cli -i ./TaxiNT/TailwindImport/input.css -o ./TaxiNT/wwwroot/css/tailwindcss.css --watch */
+/* 
+    npx @tailwindcss/cli -i ./TaxiNT/TailwindImport/input.css -o ./TaxiNT/wwwroot/css/tailwindcss.css --watch 
+
+*/

@@ -5,5 +5,5 @@ public interface IOrderService
 {
     Task<Revenue> GetRevenue(string userId);
     Task<Timepiece> GetTimepiece(string userId);
-    Task<Contract> GetContract(string userId);
+    Task<GGSContract> GetContract(string userId);
 }

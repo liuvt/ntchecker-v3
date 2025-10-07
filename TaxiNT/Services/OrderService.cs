@@ -162,9 +162,9 @@ public class OrderService : IOrderService
     #region Contracts
 
     // Lấy toàn bộ danh sách
-    private async Task<List<ContractDetail>> GetsContractDetail()
+    private async Task<List<GGSContractDetail>> GetsContractDetail()
     {
-        var dts = new List<ContractDetail>();
+        var dts = new List<GGSContractDetail>();
         var range = $"{sheetDATAHOPDONG}!A2:K";
         var values = await sheetsService.ltvGetSheetValuesAsync(SpreadSheetId, range);
         if (values == null || values.Count == 0)
@@ -175,7 +175,7 @@ public class OrderService : IOrderService
         foreach (var item in values)
         {
 
-            dts.Add(new ContractDetail
+            dts.Add(new GGSContractDetail
             {
                 ctId = item.ltvGetValueString(0),
                 numberCar = item.ltvGetValueString(1),
@@ -195,12 +195,12 @@ public class OrderService : IOrderService
     }
 
     // Lọc lại danh sách theo mã userId của tài xế [Họ tên - Mã nhân viên]
-    public async Task<Contract> GetContract(string userId)
+    public async Task<GGSContract> GetContract(string userId)
     {
-        var dts = await GetsContractDetail() ?? new List<ContractDetail>();
+        var dts = await GetsContractDetail() ?? new List<GGSContractDetail>();
         var listContract = dts.Where(e => e.userId.Equals(userId, StringComparison.OrdinalIgnoreCase)).ToList();
 
-        return new Contract
+        return new GGSContract
         {
             userId = userId,
             contracts = listContract

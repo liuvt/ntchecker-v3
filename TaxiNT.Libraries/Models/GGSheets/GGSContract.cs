@@ -1,17 +1,17 @@
 ﻿using TaxiNT.Libraries.Extensions;
 
 namespace TaxiNT.Libraries.Models.GGSheets;
-public class Contract
+public class GGSContract
 {
     public string userId { get; set; } = string.Empty;
-    public List<ContractDetail>? contracts { get; set; }
+    public List<GGSContractDetail>? contracts { get; set; }
 
-    public string TotalPrice => contracts?.ltvSumFieldValues<ContractDetail>(e => e.totalPrice);
+    public string TotalPrice => contracts?.ltvSumFieldValues<GGSContractDetail>(e => e.totalPrice);
     public int count => contracts?.Count ?? 0;
 
 }
 
-public class ContractDetail
+public class GGSContractDetail
 {
     public string ctId { get; set; } = string.Empty;
     public string numberCar { get; set; } = string.Empty;

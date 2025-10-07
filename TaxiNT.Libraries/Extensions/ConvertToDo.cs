@@ -5,7 +5,7 @@ namespace TaxiNT.Libraries.Extensions;
 
 public static class ConvertToDo
 {
-    public static CheckerDetailDto ltvConvertCheckerDetailToDo(this CheckerDetailDto checkerDetail, Revenue _revenue, Timepiece _timepiece, Contract _contract)
+    public static CheckerDetailDto ltvConvertCheckerDetailToDo(this CheckerDetailDto checkerDetail, Revenue _revenue, Timepiece _timepiece, GGSContract _contract)
     {
         //Convert revenuedetail to revenuedto
         var revenueDto = new RevenueDto
