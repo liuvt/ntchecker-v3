@@ -95,8 +95,8 @@ namespace TaxiNT.Data.Migrations
                     discountGSM = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     discountNT = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     bank_Id = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    typeCar = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     createdAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    typeCar = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rank = table.Column<int>(type: "int", nullable: false),
                     SauMucAnChia = table.Column<decimal>(type: "decimal(18,2)", nullable: false)

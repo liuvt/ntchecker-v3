@@ -12,8 +12,8 @@ using TaxiNT.Data;
 namespace TaxiNT.Data.Migrations
 {
     [DbContext(typeof(taxiNTDBContext))]
-    [Migration("20251007101136_Init")]
-    partial class Init
+    [Migration("20251007110058_updateTripPrice")]
+    partial class updateTripPrice
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -388,13 +388,11 @@ namespace TaxiNT.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("revenueByDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("revenueByDate")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("revenueByMonth")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("revenueByMonth")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("totalPrice")
                         .HasColumnType("decimal(18,2)");
@@ -441,7 +439,7 @@ namespace TaxiNT.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("tpPrice")
+                    b.Property<decimal?>("tpPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("tpTimeEnd")

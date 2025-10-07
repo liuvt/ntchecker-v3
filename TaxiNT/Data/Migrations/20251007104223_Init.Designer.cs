@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaxiNT.Data;
 
@@ -11,9 +12,11 @@ using TaxiNT.Data;
 namespace TaxiNT.Data.Migrations
 {
     [DbContext(typeof(taxiNTDBContext))]
-    partial class taxiNTDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251007104223_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -385,11 +388,13 @@ namespace TaxiNT.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("revenueByDate")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("revenueByDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("revenueByMonth")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("revenueByMonth")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("totalPrice")
                         .HasColumnType("decimal(18,2)");
@@ -436,7 +441,7 @@ namespace TaxiNT.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("tpPrice")
+                    b.Property<decimal>("tpPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("tpTimeEnd")

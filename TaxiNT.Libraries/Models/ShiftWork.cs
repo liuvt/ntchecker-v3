@@ -11,8 +11,8 @@ public class ShiftWork
     public string numberCar { get; set; } = string.Empty;
     public string userId { get; set; } = string.Empty;
 
-    public string revenueByMonth { get; set; } = string.Empty;
-    public string revenueByDate { get; set; } = string.Empty;
+    public decimal? revenueByMonth { get; set; } 
+    public decimal? revenueByDate { get; set; }
 
     public string qrContext { get; set; } = string.Empty;
     public string qrUrl { get; set; } = string.Empty;
@@ -27,8 +27,8 @@ public class ShiftWork
     public decimal? discountNT { get; set; }
 
     public string bank_Id { get; set; } = string.Empty;
-    public string typeCar { get; set; } = string.Empty;
     public DateTime? createdAt { get; set; }
+    public string typeCar { get; set; } = string.Empty;
 
     public string Area { get; set; } = string.Empty;
     public int Rank { get; set; }
