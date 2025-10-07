@@ -110,6 +110,7 @@ builder.Services.AddSwaggerGen(
 builder.Services.AddAuthorization();
 //For SQL Server
 builder.Services.AddScoped<IBankService, BankService>();
+builder.Services.AddScoped<IShiftWorkService, ShiftWorkService>();
 
 //Google Sheets API:
 builder.Services.AddScoped<IAuthService, AuthService>();

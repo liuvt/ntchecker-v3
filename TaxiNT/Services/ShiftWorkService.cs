@@ -25,111 +25,96 @@ public class ShiftWorkService : IShiftWorkService
     // Upsert dữ liệu hằng ngày cho 3 bảng
     public async Task<object> UpsertShiftWorkDailyAsync(ShiftWorkDailySyncDto data)
     {
-        if (data == null || data.ShiftWork == null)
-            return new BadRequestObjectResult("Invalid data payload.");
-
-        // Lấy ngày và khu vực từ ShiftWork chính
-        var workDate = data.ShiftWork.createdAt?.Date ?? DateTime.UtcNow.Date;
-        var area = data.ShiftWork.Area;
-        var userId = data.ShiftWork.userId;
+        if (data?.ShiftWorks == null || data.ShiftWorks.Count == 0)
+            return new BadRequestObjectResult("No ShiftWork data found.");
 
         using var transaction = await _context.Database.BeginTransactionAsync();
 
         try
         {
-            // === 1️⃣ Upsert SHIFTWORK ===
-            var existingShift = await _context.ShiftWorks
-                .FirstOrDefaultAsync(x =>
-                    x.Area == area &&
-                    x.userId == userId &&
-                    x.createdAt.HasValue &&
-                    x.createdAt.Value.Date == workDate);
+            int totalTrips = 0; // Đếm tổng số Trip được thêm
+            int totalContracts = 0; // Đếm tổng số Contract được thêm
 
-            ShiftWork targetShift;
-
-            if (existingShift != null)
+            foreach (var group in data.ShiftWorks)
             {
-                // Update nếu tồn tại
-                existingShift.numberCar = data.ShiftWork.numberCar;
-                existingShift.revenueByMonth = data.ShiftWork.revenueByMonth;
-                existingShift.revenueByDate = data.ShiftWork.revenueByDate;
-                existingShift.totalPrice = data.ShiftWork.totalPrice;
-                existingShift.discountNT = data.ShiftWork.discountNT;
-                existingShift.discountGSM = data.ShiftWork.discountGSM;
-                existingShift.discountOther = data.ShiftWork.discountOther;
-                existingShift.arrearsOther = data.ShiftWork.arrearsOther;
-                existingShift.walletGSM = data.ShiftWork.walletGSM;
-                existingShift.Rank = data.ShiftWork.Rank;
-                existingShift.qrContext = data.ShiftWork.qrContext;
-                existingShift.qrUrl = data.ShiftWork.qrUrl;
-                existingShift.createdAt = data.ShiftWork.createdAt;
+                var sw = group.ShiftWork; 
+                if (sw.createdAt == null)
+                    throw new Exception("ShiftWork.createdAt is required to determine WorkDate.");
 
-                _context.ShiftWorks.Update(existingShift);
-                targetShift = existingShift;
+                var workDate = sw.createdAt.Value.Date;
+                var area = sw.Area;
+                var userId = sw.userId;
+
+                // === 1️⃣ Tìm ShiftWork hiện có theo Area + User + Ngày ===
+                var existingShift = await _context.ShiftWorks
+                    .FirstOrDefaultAsync(x =>
+                        x.Area == area &&
+                        x.userId == userId &&
+                        x.createdAt.HasValue &&
+                        x.createdAt.Value.Date == workDate);
+
+                ShiftWork targetShift;
+
+                if (existingShift != null)
+                {
+                    // Update dữ liệu
+                    _context.Entry(existingShift).CurrentValues.SetValues(sw);
+                    targetShift = existingShift;
+                }
+                else
+                {
+                    sw.createdAt ??= DateTime.UtcNow;
+                    await _context.ShiftWorks.AddAsync(sw);
+                    targetShift = sw;
+                }
+
+                await _context.SaveChangesAsync();
+                var shiftworkId = targetShift.Id;
+
+                // === 2️⃣ Xóa dữ liệu cũ của ShiftWork ===
+                var oldTrips = _context.Trips.Where(t => t.shiftworkId == shiftworkId);
+                var oldContracts = _context.Contracts.Where(c => c.shiftworkId == shiftworkId);
+
+                _context.Trips.RemoveRange(oldTrips);
+                _context.Contracts.RemoveRange(oldContracts);
+                await _context.SaveChangesAsync();
+
+                // === 3️⃣ Gán shiftworkId mới cho dữ liệu chi tiết ===
+                foreach (var trip in group.Trips)
+                {
+                    trip.shiftworkId = shiftworkId;
+                    trip.createdAt ??= DateTime.UtcNow;
+                }
+
+                foreach (var contract in group.Contracts)
+                {
+                    contract.shiftworkId = shiftworkId;
+                    contract.createdAt ??= DateTime.UtcNow;
+                }
+
+                // === 4️⃣ Thêm dữ liệu mới ===
+                await _context.Trips.AddRangeAsync(group.Trips);
+                await _context.Contracts.AddRangeAsync(group.Contracts);
+                await _context.SaveChangesAsync();
+
+                totalTrips += group.Trips.Count;
+                totalContracts += group.Contracts.Count;
             }
-            else
-            {
-                // Tạo mới
-                data.ShiftWork.createdAt ??= DateTime.UtcNow;
-                await _context.ShiftWorks.AddAsync(data.ShiftWork);
-                targetShift = data.ShiftWork;
-            }
-
-            await _context.SaveChangesAsync();
-
-            // === 2️⃣ Gắn shiftworkId cho chi tiết ===
-            var shiftworkId = targetShift.Id;
-
-            foreach (var trip in data.TripDetails)
-            {
-                trip.shiftworkId = shiftworkId;
-                trip.createdAt ??= DateTime.UtcNow;
-            }
-
-            foreach (var contract in data.ContractDetails)
-            {
-                contract.shiftworkId = shiftworkId;
-                contract.createdAt ??= DateTime.UtcNow;
-            }
-
-            // === 3️⃣ Xóa dữ liệu cũ của user trong cùng ngày ===
-            var oldTrips = _context.Trips.Where(x =>
-                x.userId == userId &&
-                x.createdAt.HasValue &&
-                x.createdAt.Value.Date == workDate);
-
-            _context.Trips.RemoveRange(oldTrips);
-
-            var oldContracts = _context.Contracts.Where(x =>
-                x.userId == userId &&
-                x.createdAt.HasValue &&
-                x.createdAt.Value.Date == workDate);
-
-            _context.Contracts.RemoveRange(oldContracts);
-
-            await _context.SaveChangesAsync();
-
-            // === 4️⃣ Thêm mới ===
-            await _context.Trips.AddRangeAsync(data.TripDetails);
-            await _context.Contracts.AddRangeAsync(data.ContractDetails);
-            await _context.SaveChangesAsync();
 
             await transaction.CommitAsync();
 
             return new OkObjectResult(new
             {
                 message = "Upsert completed successfully",
-                area,
-                userId,
-                workDate = workDate.ToString("yyyy-MM-dd"),
-                totalTrips = data.TripDetails.Count,
-                totalContracts = data.ContractDetails.Count
+                totalShiftWorks = data.ShiftWorks.Count,
+                totalTrips,
+                totalContracts
             });
         }
         catch (Exception ex)
         {
             await transaction.RollbackAsync();
-            _logger.LogError(ex, "Error during upsert ShiftWorkDaily for user {UserId}", userId);
+            _logger.LogError(ex, "Error during UpsertShiftWorkDailyAsync");
             return new ObjectResult("Internal server error") { StatusCode = 500 };
         }
     }

@@ -10,9 +10,9 @@ namespace TaxiNT.Controllers
     public class ShiftWorkController : ControllerBase
     {
         //Get API Server
-        private readonly IOrderService context;
+        private readonly IShiftWorkService context;
         private readonly ILogger<ShiftWorkController> logger;
-        public ShiftWorkController(IOrderService _context, ILogger<ShiftWorkController> _logger)
+        public ShiftWorkController(IShiftWorkService _context, ILogger<ShiftWorkController> _logger)
         {
             this.context = _context;
             this.logger = _logger;
