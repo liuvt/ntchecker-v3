@@ -251,7 +251,7 @@ namespace TaxiNT.Data.Migrations
                     b.Property<string>("ctId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("createdAt")
+                    b.Property<DateTime?>("createdAt")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal?>("ctAmout")

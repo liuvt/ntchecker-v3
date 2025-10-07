@@ -226,7 +226,7 @@ namespace TaxiNT.Data.Migrations
                     ctPromotion = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     totalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     userId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     shiftworkId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
