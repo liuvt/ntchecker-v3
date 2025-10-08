@@ -153,5 +153,147 @@ public class ShiftWorkService : IShiftWorkService
             return new ObjectResult("Internal server error") { StatusCode = 500 };
         }
     }
+
+    /* Example input data:
+     {
+      "shiftWorks": [
+            {
+              "shiftWork": {
+                "numberCar": "BL3001",
+                "userId": "LÊ HOÀNG HẾT - BL0109",
+                "revenueByMonth": 2248000,
+                "revenueByDate": 1232500,
+                "qrContext": "BL3001 - LÊ HOÀNG HẾT - BL0109 - 07102025",
+                "qrUrl": "https://img.vietqr.io/image/",
+                "discountOther": 0,
+                "arrearsOther": 0,
+                "totalPrice": 1232500,
+                "walletGSM": 0,
+                "discountGSM": 0,
+                "discountNT": 0,
+                "bank_Id": "BLBANK0001",
+                "createdAt": "2025-10-07T00:00:00.000Z",
+                "typeCar": "Taxi điện",
+                "Area": "BACLIEU",
+                "Rank": 51,
+                "SauMucAnChia": 542300
+              },
+              "trips": [
+                {
+                  "numberCar": "BL3001",
+                  "tpTimeStart": "2025-10-07T10:36:43.000Z",
+                  "tpTimeEnd": "2025-10-07T10:42:23.000Z",
+                  "tpDistance": 1.55,
+                  "tpPrice": 27000,
+                  "tpPickUp": "Phường Láng Tròn, Cà Mau",
+                  "tpDropOut": "Phường Láng Tròn, Cà Mau",
+                  "tpType": "Cuốc Lẻ",
+                  "userId": "LÊ HOÀNG HẾT - BL0109",
+                  "createdAt": "2025-10-07T00:00:00.000Z"
+                },
+                {
+                  "numberCar": "BL3001",
+                  "tpTimeStart": "2025-10-07T13:27:03.000Z",
+                  "tpTimeEnd": "2025-10-07T13:32:19.000Z",
+                  "tpDistance": 2.07,
+                  "tpPrice": 36000,
+                  "tpPickUp": "Đường QL1A, Phường Giá Rai, Cà Mau",
+                  "tpDropOut": "Đường Gía Cần Bảy, Phường Giá Rai, Cà Mau",
+                  "tpType": "Xanh SM",
+                  "userId": "LÊ HOÀNG HẾT - BL0109",
+                  "createdAt": "2025-10-07T00:00:00.000Z"
+                },
+                {
+                  "numberCar": "BL3001",
+                  "tpTimeStart": "2025-10-07T15:53:41.000Z",
+                  "tpTimeEnd": "2025-10-07T16:06:24.000Z",
+                  "tpDistance": 8.23,
+                  "tpPrice": 107000,
+                  "tpPickUp": "Đường QL1A, Phường Giá Rai, Cà Mau",
+                  "tpDropOut": "Đường Cầu Hộ Phòng, Phường Giá Rai, Cà Mau",
+                  "tpType": "Cuốc Lẻ",
+                  "userId": "LÊ HOÀNG HẾT - BL0109",
+                  "createdAt": "2025-10-07T00:00:00.000Z"
+                },
+                {
+                  "numberCar": "BL3001",
+                  "tpTimeStart": "2025-10-07T17:24:12.000Z",
+                  "tpTimeEnd": "2025-10-07T17:33:46.000Z",
+                  "tpDistance": 4.7,
+                  "tpPrice": 64500,
+                  "tpPickUp": "Đường QL1A, Phường Giá Rai, Cà Mau",
+                  "tpDropOut": "Đường QL1A, Phường Giá Rai, Cà Mau",
+                  "tpType": "Cuốc Lẻ",
+                  "userId": "LÊ HOÀNG HẾT - BL0109",
+                  "createdAt": "2025-10-07T00:00:00.000Z"
+                },
+                {
+                  "numberCar": "BL3001",
+                  "tpTimeStart": "2025-10-07T18:22:03.000Z",
+                  "tpTimeEnd": "2025-10-07T18:29:50.000Z",
+                  "tpDistance": 6.68,
+                  "tpPrice": 88500,
+                  "tpPickUp": "Đường QL1A, Xã Phong Thạnh, Cà Mau",
+                  "tpDropOut": "Đường Trần Văn Sớm, Phường Giá Rai, Cà Mau",
+                  "tpType": "Cuốc Lẻ",
+                  "userId": "LÊ HOÀNG HẾT - BL0109",
+                  "createdAt": "2025-10-07T00:00:00.000Z"
+                },
+                {
+                  "numberCar": "BL3001",
+                  "tpTimeStart": "2025-10-07T19:02:33.000Z",
+                  "tpTimeEnd": "2025-10-07T19:06:24.000Z",
+                  "tpDistance": 1.53,
+                  "tpPrice": 26500,
+                  "tpPickUp": "Đường Trần Văn Sớm, Phường Giá Rai, Cà Mau",
+                  "tpDropOut": "Đường QL1A, Phường Giá Rai, Cà Mau",
+                  "tpType": "Cuốc Lẻ",
+                  "userId": "LÊ HOÀNG HẾT - BL0109",
+                  "createdAt": "2025-10-07T00:00:00.000Z"
+                },
+                {
+                  "numberCar": "BL3001",
+                  "tpTimeStart": "2025-10-07T19:20:55.000Z",
+                  "tpTimeEnd": "2025-10-07T19:27:36.000Z",
+                  "tpDistance": 5.23,
+                  "tpPrice": 71000,
+                  "tpPickUp": "Đường QL1A, Phường Giá Rai, Cà Mau",
+                  "tpDropOut": "Đường QL1A, Xã Phong Thạnh, Cà Mau",
+                  "tpType": "Cuốc Lẻ",
+                  "userId": "LÊ HOÀNG HẾT - BL0109",
+                  "createdAt": "2025-10-07T00:00:00.000Z"
+                }
+              ],
+              "contracts": [
+                {
+                  "numberCar": "BL3001",
+                  "ctKey": "Hộ Phòng -> CÀ MAU",
+                  "ctAmout": 396000,
+                  "ctDefaultDistance": "62km - 60 phút",
+                  "ctOverDistance": "9km - 73 phút",
+                  "ctSurcharge": 127000,
+                  "ctPromotion": 0,
+                  "totalPrice": 523000,
+                  "userId": "LÊ HOÀNG HẾT - BL0109",
+                  "createdAt": "2025-10-07T00:00:00.000Z"
+                },
+                {
+                  "numberCar": "BL3001",
+                  "ctKey": "Hộ Phòng -> Gành hào",
+                  "ctAmout": 255000,
+                  "ctDefaultDistance": "30km - 60 phút",
+                  "ctOverDistance": "4km - 0 phút",
+                  "ctSurcharge": 34000,
+                  "ctPromotion": 0,
+                  "totalPrice": 289000,
+                  "userId": "LÊ HOÀNG HẾT - BL0109",
+                  "createdAt": "2025-10-07T00:00:00.000Z"
+                }
+              ]
+            }
+        ]
+       }
+     
+     */
     #endregion
 }
