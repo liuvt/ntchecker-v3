@@ -36,11 +36,73 @@ public class ShiftWorkService : IShiftWorkService
             // Đếm tổng số bản ghi
             int totalTrips = 0;
             int totalContracts = 0;
+            int totalDelete = 0;
+
+            #region Xóa các ShiftWork: Trips/Contracts củ không có trong batch hiện tại
+            // === Khởi tạo key vì không xác định ID: User - Area - Date ===
+            var incomingKeys = data.ShiftWorks
+                .Where(g => g.ShiftWork != null)
+                .Select(g => new
+                {
+                    g.ShiftWork.userId,
+                    g.ShiftWork.Area,
+                    WorkDate = g.ShiftWork.createdAt?.Date
+                })
+                .ToList();
+
+            // === Lấy Toàn bộ dữ liệu shiftwork SQL theo key: Area - Date ===
+            //Không cần lấy userId: lấy toàn bộ danh sách trong sql đã cập nhật trước đó. Nếu lấy theo ID User theo batch mới không có thì xem như khôn lấy được trong SQL để xóa
+            //var allUserIds = incomingKeys.Select(k => k.userId).Distinct().ToList();
+            var allAreas = incomingKeys.Select(k => k.Area).Distinct().ToList();
+            var allDates = incomingKeys.Select(k => k.WorkDate).Distinct().ToList();
+
+            var existingShiftworks = await _context.ShiftWorks
+                .Where(sw => allAreas.Contains(sw.Area)
+                          && sw.createdAt.HasValue //Kiểm tra trước xem có null không
+                          && allDates.Contains(sw.createdAt.Value.Date))
+                .Include(sw => sw.Trips)
+                .Include(sw => sw.Contracts)
+                .ToListAsync();
+
+            // === Tìm ShiftWork cũ không có trong batch mới ===
+            var obsoleteShiftworks = existingShiftworks
+                .Where(old => !incomingKeys.Any(k =>
+                    k.userId == old.userId &&
+                    k.Area == old.Area &&
+                    k.WorkDate == old.createdAt.Value.Date))
+                .ToList();
+
+            // Xóa các ShiftWork cũ cùng với Trips và Contracts liên quan
+            if (obsoleteShiftworks.Any())
+            {
+                var obsoleteIds = obsoleteShiftworks.Select(sw => sw.Id).ToList();
+
+                // Log chi tiết những bản ghi bị xóa
+                foreach (var sw in obsoleteShiftworks)
+                {
+                    _logger.LogWarning(
+                        "🗑 Xóa ShiftWork: User = {UserId}, Ngày = {WorkDate}, Khu vực = {Area}, ShiftWorkId = {Id}",
+                        sw.userId,
+                        sw.createdAt?.ToString("yyyy-MM-dd"),
+                        sw.Area,
+                        sw.Id
+                    );
+                }
+
+                _context.Trips.RemoveRange(_context.Trips.Where(t => obsoleteIds.Contains(t.shiftworkId)));
+                _context.Contracts.RemoveRange(_context.Contracts.Where(c => obsoleteIds.Contains(c.shiftworkId)));
+                _context.ShiftWorks.RemoveRange(obsoleteShiftworks);
+
+                totalDelete = obsoleteShiftworks.Count;
+                await _context.SaveChangesAsync();
+            }
+            #endregion
 
             // Xử lý từng nhóm ShiftWork
             foreach (var group in data.ShiftWorks)
             {
                 // Lấy thông tin chung của 1 tài xế thông qua shiftWork: Khu vực + Tài xế + Ngày
+                #region Xữ lý dữ liệu ShiftWork
                 var sw = group.ShiftWork;
                 if (sw.createdAt == null)
                     throw new Exception("ShiftWork.createdAt is required to determine WorkDate.");
@@ -83,6 +145,15 @@ public class ShiftWorkService : IShiftWorkService
                     existingShift.Rank = sw.Rank;
                     existingShift.SauMucAnChia = sw.SauMucAnChia;
 
+                    // Log cập nhật ShiftWork
+                    _logger.LogInformation(
+                        "🔁 Cập nhật ShiftWork: User = {UserId}, Ngày = {WorkDate}, Khu vực = {Area}, Id = {Id}",
+                        existingShift.userId,
+                        existingShift.createdAt?.ToString("yyyy-MM-dd"),
+                        existingShift.Area,
+                        existingShift.Id
+                    );
+
                     //Ghi lại dữ liệu để cập nhật
                     targetShift = existingShift;
                 }
@@ -91,13 +162,23 @@ public class ShiftWorkService : IShiftWorkService
                     // --- Thêm mới ShiftWork ---
                     await _context.ShiftWorks.AddAsync(sw);
 
+                    // Log thêm mới ShiftWork
+                    _logger.LogInformation(
+                        "🆕 Thêm mới ShiftWork: User = {UserId}, Ngày = {WorkDate}, Khu vực = {Area}",
+                        sw.userId,
+                        sw.createdAt?.ToString("yyyy-MM-dd"),
+                        sw.Area
+                    );
+
                     //Ghi lại liệu để thêm mới
                     targetShift = sw;
                 }
 
                 //Ghi vào SQL
                 await _context.SaveChangesAsync();
+                #endregion
 
+                #region Xữ lý dữ liệu Trip và Contract theo khóa ngoại shiftworkId Xóa và cập nhật mới
                 //Lấy Id của ShiftWork vừa thêm hoặc cập nhật để xữ lý Trip và Contract
                 var shiftworkId = targetShift.Id;
 
@@ -128,11 +209,14 @@ public class ShiftWorkService : IShiftWorkService
 
                 //Ghi vào SQL lần cuối
                 await _context.SaveChangesAsync();
+                #endregion
 
                 // Cập nhật tổng số bản ghi
                 totalTrips += group.Trips.Count;
                 totalContracts += group.Contracts.Count;
             }
+
+            
 
             // Commit transaction nếu tất cả thành công sẽ được ghi vào database
             await transaction.CommitAsync();
@@ -142,7 +226,8 @@ public class ShiftWorkService : IShiftWorkService
                 message = "Upsert completed successfully",
                 totalShiftWorks = data.ShiftWorks.Count,
                 totalTrips,
-                totalContracts
+                totalContracts,
+                totalDelete
             });
         }
         catch (Exception ex)
