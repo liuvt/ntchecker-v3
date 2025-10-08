@@ -1,0 +1,15 @@
+﻿@page "/login"
+@layout MainLayoutEmpty
+@inject IJSRuntime jS
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<PageTitle>Đăng nhập</PageTitle>
+
+<AuthorizedContent >
+    <ChildContent>
+        <RedirectToDashboard />
+    </ChildContent>
+    <NotAuthorizedContent>
+        <LoginComponent  />
+    </NotAuthorizedContent>
+</AuthorizedContent>

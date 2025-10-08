@@ -3,13 +3,207 @@
 @inject IJSRuntime jS
 @rendermode @(new InteractiveServerRenderMode(prerender: true))
 
-<PageTitle>Đăng nhập</PageTitle>
+<PageTitle>Trang chủ</PageTitle>
 
-<AuthorizedContent >
+<AuthorizedContent>
     <ChildContent>
         <RedirectToDashboard />
     </ChildContent>
     <NotAuthorizedContent>
-        <LoginComponent  />
+        <header class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                <a href="#" class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-md bg-lime-500 flex items-center justify-center text-white font-bold">NT</div>
+                    <div>
+                        <h1 class="text-lg font-semibold">Taxi Nam Thắng</h1>
+                        <p class="text-xs text-gray-500">An toàn • Nhanh chóng • Tin cậy</p>
+                    </div>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-6 text-sm">
+                    <a href="#about" class="hover:text-blue-600">Về chúng tôi</a>
+                    <a href="#services" class="hover:text-blue-600">Dịch vụ</a>
+                    <a href="#fleet" class="hover:text-blue-600">Đội xe</a>
+                    <a href="#contact" class="hover:text-blue-600">Liên hệ</a>
+                </nav>
+
+                <div class="flex items-center gap-4">
+                    <a href="#booking" class="hidden md:inline-block px-4 py-2 bg-lime-500 text-white rounded-md shadow">Đặt xe ngay</a>
+                    <button class="md:hidden p-2 rounded-md hover:bg-gray-100" id="menuBtn">☰</button>
+                </div>
+            </div>
+        </header>
+        <!-- Mobile nav -->
+        <div id="mobileNav" class="md:hidden bg-white border-b hidden">
+            <div class="px-6 py-4 flex flex-col gap-3">
+                <a href="#about" class="py-2">Về chúng tôi</a>
+                <a href="#services" class="py-2">Dịch vụ</a>
+                <a href="#fleet" class="py-2">Đội xe</a>
+                <a href="#contact" class="py-2">Liên hệ</a>
+                <a href="#booking" class="py-2 bg-blue-600 text-white text-center rounded-md">Đặt xe</a>
+            </div>
+        </div>
+
+        <!-- Hero -->
+        <main class="max-w-7xl mx-auto px-6 py-12">
+            <section class="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">Taxi Nam Thắng — Di chuyển an toàn, đến nơi đúng giờ</h2>
+                    <p class="mt-4 text-gray-600">Chúng tôi cung cấp dịch vụ taxi chuyên nghiệp, đội xe mới, tài xế thân thiện và giá cả minh bạch. Hỗ trợ đặt xe qua điện thoại, website và QR pay.</p>
+
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <a href="#booking" class="px-5 py-3 bg-lime-500 text-white rounded-md shadow">Đặt xe ngay</a>
+                        <a href="#contact" class="px-5 py-3 border rounded-md">Liên hệ tư vấn</a>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-3 gap-4 sm:grid-cols-3">
+                        <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                            <div class="text-2xl font-bold">24/7</div>
+                            <div class="text-xs text-gray-500">Hỗ trợ</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                            <div class="text-2xl font-bold">300+</div>
+                            <div class="text-xs text-gray-500">Tuyến đường/Ngày</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm text-center">
+                            <div class="text-2xl font-bold">4.9★</div>
+                            <div class="text-xs text-gray-500">Đánh giá</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-first lg:order-last">
+                    <div class="bg-gradient-to-tr from-blue-50 to-white rounded-2xl p-6 shadow-lg">
+                        <img src="./imgs/customers/homepage.jpg" alt="Taxi" class="w-full rounded-lg object-cover h-64 sm:h-72" />
+                    </div>
+                </div>
+            </section>
+            <!-- About -->
+            <section id="about" class="mt-16 bg-white rounded-xl p-6 shadow-sm">
+                <h3 class="text-2xl font-semibold">Về Taxi Nam Thắng</h3>
+                <p class="mt-3 text-gray-600">Với hơn 10 năm kinh nghiệm phục vụ hành khách trong và ngoài tỉnh, Taxi Nam Thắng cam kết mang đến trải nghiệm di chuyển an toàn, sạch sẽ và đúng giờ. Đội ngũ tài xế của chúng tôi được đào tạo bài bản, xe được bảo trì định kỳ và trang bị tiện nghi cơ bản.</p>
+
+                <div class="mt-6 grid md:grid-cols-3 gap-4">
+                    <div class="p-4 border rounded-lg">
+                        <h4 class="font-semibold">An toàn</h4>
+                        <p class="text-sm text-gray-500 mt-2">Kiểm tra xe trước mỗi ca, tuân thủ quy định giao thông.</p>
+                    </div>
+                    <div class="p-4 border rounded-lg">
+                        <h4 class="font-semibold">Giá minh bạch</h4>
+                        <p class="text-sm text-gray-500 mt-2">Báo giá rõ ràng, không phát sinh phí không thỏa thuận.</p>
+                    </div>
+                    <div class="p-4 border rounded-lg">
+                        <h4 class="font-semibold">Hỗ trợ 24/7</h4>
+                        <p class="text-sm text-gray-500 mt-2">Đặt xe nhanh qua số hotline hoặc form trực tuyến.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Services -->
+            <section id="services" class="mt-10">
+                <h3 class="text-xl font-semibold">Dịch vụ của chúng tôi</h3>
+                <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h4 class="font-semibold">Taxi thường</h4>
+                        <p class="text-sm text-gray-500 mt-2">Di chuyển trong thành phố, giá hợp lý.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h4 class="font-semibold">Xe gia đình</h4>
+                        <p class="text-sm text-gray-500 mt-2">Xe 4-7 chỗ, phù hợp cho gia đình và nhóm nhỏ.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h4 class="font-semibold">Sân bay</h4>
+                        <p class="text-sm text-gray-500 mt-2">Đón tiễn sân bay đúng giờ, theo dõi chuyến bay.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h4 class="font-semibold">Hợp đồng doanh nghiệp</h4>
+                        <p class="text-sm text-gray-500 mt-2">Giải pháp di chuyển cho doanh nghiệp, hóa đơn VAT.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Fleet -->
+            <section id="fleet" class="mt-10 bg-white p-6 rounded-xl shadow-sm">
+                <h3 class="text-xl font-semibold">Đội xe</h3>
+                <p class="text-sm text-gray-500 mt-2">Đa dạng loại xe đáp ứng mọi nhu cầu.</p>
+                <div class="mt-4 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="border rounded-lg overflow-hidden">
+                        <img src="./imgs/customers/vf5.jpg" alt="Xe 4 chỗ" class="w-full h-40 object-cover" />
+                        <div class="p-4">
+                            <h4 class="font-semibold">Xe điện 4 chỗ - VF 5</h4>
+                            <p class="text-sm text-gray-500 mt-1">Tiện lợi cho di chuyển cá nhân hoặc gia đình nhỏ.</p>
+                        </div>
+                    </div>
+                    <div class="border rounded-lg overflow-hidden">
+                        <img src="./imgs/customers/vf6.jpg" alt="Xe 5 chỗ" class="w-full h-40 object-cover" />
+                        <div class="p-4">
+                            <h4 class="font-semibold">Xe điện 5 chỗ - VF 6</h4>
+                            <p class="text-sm text-gray-500 mt-1">Phù hợp cho nhóm và gia đình lớn.</p>
+                        </div>
+                    </div>
+                    <div class="border rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=mnop" alt="Xe Limousine" class="w-full h-40 object-cover" />
+                        <div class="p-4">
+                            <h4 class="font-semibold">Limousine</h4>
+                            <p class="text-sm text-gray-500 mt-1">Thoải mái, sang trọng cho hành trình dài.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Booking form (mock) -->
+            <section id="booking" class="mt-10 bg-gradient-to-r from-white to-blue-50 p-6 rounded-xl">
+                <h3 class="text-xl font-semibold">Đặt xe nhanh</h3>
+                <p class="text-sm text-gray-500 mt-1">Nhập thông tin cơ bản, tài xế sẽ liên hệ xác nhận.</p>
+
+                <form class="mt-4 grid md:grid-cols-3 gap-3">
+                    <input type="text" placeholder="Họ và tên" class="p-3 rounded-md border" />
+                    <input type="tel" placeholder="Số điện thoại" class="p-3 rounded-md border" />
+                    <input type="datetime-local" class="p-3 rounded-md border" />
+                    <input type="text" placeholder="Điểm đi - Điểm đến" class="p-3 rounded-md border md:col-span-2" />
+                    <select class="p-3 rounded-md border">
+                        <option>Xe 4 chỗ</option>
+                        <option>Xe 5 chỗ</option>
+                        <option>Khác</option>
+                    </select>
+                    <button type="submit" class="px-4 py-3 bg-lime-500 text-white rounded-md md:col-span-3">Gửi yêu cầu</button>
+                </form>
+            </section>
+            <!-- Contact -->
+            <section id="contact" class="mt-10 bg-white p-6 rounded-xl shadow-sm">
+                <h3 class="text-xl font-semibold">Liên hệ</h3>
+                <div class="mt-4 grid md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-semibold text-lg mb-2">Social</p>
+                        <div class="flex items-center gap-3">
+                            <!-- Facebook -->
+                            <a href="https://www.facebook.com/tapdoannamthang/" target="_blank"
+                               class="p-2 bg-blue-50 rounded-full text-blue-600 hover:bg-blue-100 hover:scale-110 hover:text-blue-800 transition transform duration-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-7 h-7">
+                                    <path d="M22.675 0h-21.35C.595 0 0 .594 0 1.326v21.348C0 23.405.595 24 1.325 24H12.82v-9.294H9.692V11.01h3.128V8.309c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.098 2.796.142v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.696h-3.12V24h6.116A1.326 1.326 0 0024 22.674V1.326C24 .594 23.405 0 22.675 0z" />
+                                </svg>
+                            </a>
+
+                            <!-- Zalo -->
+                            <a href="" target="_blank"
+                               class="p-2 bg-sky-50 rounded-full text-sky-500 hover:bg-sky-100 hover:scale-110 hover:text-sky-700 transition transform duration-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="w-7 h-7" fill="currentColor">
+                                    <path d="M24 4C12.954 4 4 12.954 4 24c0 11.046 8.954 20 20 20 3.248 0 6.303-.775 9.02-2.15l5.893 2.015a1 1 0 0 0 1.289-1.27l-1.87-5.388A19.93 19.93 0 0 0 44 24c0-11.046-8.954-20-20-20zm3.5 28h-3l-4-10h3l2.5 6.5L28.5 22h3l-4 10zm-9.7 0h-2.8v-2.1l5.2-7.9H15v-2.6h8.2v2.1l-5.4 8.2h5.5V32zm16.4 0h-5.4v-2.6h5.4V32zm0-4.5h-5.4v-6h5.4v2.5H29v1h5.2v2.5z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold">Email</p>
+                        <p class="text-gray-600 mt-1">namthanggroup2021@gmail.com</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold">Trụ sở chính</p>
+                        <p class="text-gray-600 mt-1">Đường số 3, Ấp Sua Đũa, Xã Vĩnh Hòa Hiệp, Huyện Châu Thành, Tỉnh Kiên Giang</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Footer -->
+            <footer class="mt-10 text-sm text-gray-500 text-center">
+                © Copyright 2025 vanlt. All rights reserved. <span id="year"></span> Bản quyền thuộc về Taxi Nam Thắng.
+            </footer>
+        </main>
     </NotAuthorizedContent>
 </AuthorizedContent>
