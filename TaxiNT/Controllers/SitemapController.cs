@@ -22,8 +22,8 @@ public class SitemapController : ControllerBase
         var staticUrls = new[]
         {
             new { loc = "https://taxinamthang.com/", priority = "1.0", changefreq = "daily" },
+            new { loc = "https://taxinamthang.com/blogs", priority = "0.6", changefreq = "yearly" },
             //new { loc = "https://taxinamthang.com/gioi-thieu", priority = "0.8", changefreq = "monthly" },
-            //new { loc = "https://taxinamthang.com/lien-he", priority = "0.6", changefreq = "yearly" },
         };
 
         var sb = new StringBuilder();
