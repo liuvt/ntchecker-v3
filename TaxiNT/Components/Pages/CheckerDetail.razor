@@ -1,6 +1,10 @@
 ﻿@page "/{userId}"
 @layout MainLayoutEmpty
 
+<HeadContent>
+    <meta name="robots" content="noindex, nofollow" />
+</HeadContent>
+
 <CheckerDetailComponent userId="@userId" @rendermode="new InteractiveWebAssemblyRenderMode(prerender: true)" />
 
 @code {

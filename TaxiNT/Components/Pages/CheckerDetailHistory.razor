@@ -1,6 +1,10 @@
 ﻿@page "/{userId}/{date}"
 @layout MainLayoutEmpty
 
+<HeadContent>
+    <meta name="robots" content="noindex, nofollow" />
+</HeadContent>
+
 <CheckerDetailHistoryComponent userId="@userId" date="@date" @rendermode="new InteractiveWebAssemblyRenderMode(prerender: true)" />
 
 @code {

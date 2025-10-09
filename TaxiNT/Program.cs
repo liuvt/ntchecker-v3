@@ -160,11 +160,10 @@ else // API: Add run Swagger UI: https://localhost:7154/swagger/index.html
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
 
 app.MapControllers();
-
-app.UseAntiforgery();
 
 // Xữ lý Header: 
 app.Use(async (context, next) =>
@@ -183,6 +182,8 @@ app.Use(async (context, next) =>
 // API: Add Authoz and Authen
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseAntiforgery();
 
 app.MapStaticAssets();
 

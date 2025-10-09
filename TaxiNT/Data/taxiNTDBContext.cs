@@ -42,3 +42,6 @@ public partial class taxiNTDBContext : IdentityDbContext<AppUser>
 //Create database: dotnet ef database update
 
 //Publish project: dotnet publish -c Release --output ./Publish TaxiNT.csproj
+/* 
+   npx @tailwindcss/cli -i ./TaxiNT/TailwindImport/input.css -o ./TaxiNT/wwwroot/css/tailwindcss.css --watch 
+*/

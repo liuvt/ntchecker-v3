@@ -1,0 +1,20 @@
+﻿<HeadContent>
+    <title>@PageTitle</title>
+    <meta name="description" content="@PageDescription" />
+    <meta property="og:title" content="@PageTitle" />
+    <meta property="og:description" content="@PageDescription" />
+    <meta property="og:image" content="@PageImage" />
+    <meta property="og:url" content="@Nav.Uri" />
+</HeadContent>
+
+@code {
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public string? Image { get; set; }
+    [Inject] public NavigationManager Nav { get; set; }
+
+
+    private string PageTitle => Title ?? "Taxi Nam Thắng – Taxi Kiên Giang nhanh chóng, an toàn, giá rẻ";
+    private string PageDescription => Description ?? "Dịch vụ taxi Nam Thắng - gọi xe nhanh, giá rẻ, phục vụ 24/7 tại Kiên Giang.";
+    private string PageImage => Image ?? "https://taxinamthang.com/imgs/og-thumbnail.jpg";
+}
