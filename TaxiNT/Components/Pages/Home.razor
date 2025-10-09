@@ -1,6 +1,5 @@
 ﻿@page "/"
 @layout MainLayoutClient
-@inject IJSRuntime jS
 @rendermode @(new InteractiveServerRenderMode(prerender: true))
 
 <PageTitle>Trang chủ - Taxi Nam Thắng</PageTitle>
@@ -14,7 +13,7 @@
         <RedirectToDashboard />
     </ChildContent>
     <NotAuthorizedContent>
-        
+
         <!-- Hero -->
         <main class="mx-auto max-w-7xl px-6 py-12">
             <section class="grid items-center gap-8 lg:grid-cols-2">
@@ -28,25 +27,25 @@
                     </div>
 
                     <div class="mt-8 grid grid-cols-3 gap-4 sm:grid-cols-3">
-                        <div class="rounded-lg bg-white p-4 text-center shadow-sm">
+                        <div class="rounded-lg p-4 text-center text-gray-800 shadow">
                             <div class="text-2xl font-bold">24/7</div>
-                            <div class="text-xs text-gray-500">Hỗ trợ</div>
+                            <div class="text-xs opacity-80">Hỗ trợ</div>
                         </div>
-                        <div class="rounded-lg bg-white p-4 text-center shadow-sm">
+
+                        <div class="rounded-lg bg-emerald-500 p-4 text-center text-white shadow">
                             <div class="text-2xl font-bold">300+</div>
-                            <div class="text-xs text-gray-500">Tuyến đường/Ngày</div>
+                            <div class="text-xs opacity-80">Tuyến đường/Ngày</div>
                         </div>
-                        <div class="rounded-lg bg-white p-4 text-center shadow-sm">
+
+                        <div class="rounded-lg bg-yellow-400 p-4 text-center text-gray-800 shadow">
                             <div class="text-2xl font-bold">4.9★</div>
-                            <div class="text-xs text-gray-500">Đánh giá</div>
+                            <div class="text-xs opacity-80">Đánh giá</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="order-first lg:order-last">
-                    <div class="bg-gradient-to-tr rounded-2xl from-blue-50 to-white p-6 shadow-lg">
-                        <img src="./imgs/customers/homepage.jpg" alt="Taxi" class="h-64 w-full rounded-lg object-cover sm:h-72" />
-                    </div>
+                    <img src="./imgs/customers/homepage.jpg" alt="Taxi" class="h-64 w-full rounded-lg object-cover sm:h-72" />
                 </div>
             </section>
             <!-- About -->
@@ -230,7 +229,7 @@
 
                         <div class="mt-4 h-35 w-full overflow-hidden rounded-xl border shadow-lg">
                             <iframe class="h-full w-full"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.728118210271!2d106.68229171526015!3d10.77779616251412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1ed3f3cba3%3A0x123456789abcdef!2sYour%20Location!5e0!3m2!1sen!2s!4v1690000000000!5m2!1sen!2s"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.728118210271!2d106.68229171526015!3d10.77779616251412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1ed3f3cba3%3A0x123456789abcdef!2sYour%20Location!5e0!3m2!1sen!2s!4v1690000000000!5m2!1sen!2s"
                                     allowfullscreen=""
                                     loading="lazy"
                                     referrerpolicy="no-referrer-when-downgrade">
@@ -246,6 +245,7 @@
         </main>
     </NotAuthorizedContent>
 </AuthorizedContent>
+
 @code {
     private CustomerOrder order = new();
     private DateTime currentDateTime = DateTime.Now;

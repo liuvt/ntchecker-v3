@@ -5,7 +5,7 @@
         <main class="flex-1 overflow-y-auto p-4">
             <header class="bg-white shadow-sm">
                 <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-                    <a href="#" class="flex items-center gap-3">
+                    <a href="#" data-blazor-navigate="false" target="_self" class="flex items-center gap-3">
                         <div class="flex h-12 w-12 items-center justify-center rounded-md">
                             <img src="./imgs/customers/logo.jpg" class="flex h-12 w-12 items-center justify-center rounded-md" />
                         </div>
@@ -17,7 +17,7 @@
 
 
                     <nav class="hidden items-center gap-6 text-sm md:flex">
-                        <a href="/blogs" class="hover:text-blue-600">Tin tức</a>
+                        <a href="/blogs" data-blazor-navigate="false" target="_self" class="hover:text-blue-600">Tin tức</a>
                         <a href="#about" class="hover:text-blue-600">Về chúng tôi</a>
                         <a href="#services" class="hover:text-blue-600">Dịch vụ</a>
                         <a href="#fleet" class="hover:text-blue-600">Đội xe</a>
@@ -32,10 +32,26 @@
             </header>
 
             <!-- Mobile nav -->
-            <NavLayoutClient />
-
+            <div id="mobileNav" class="hidden border-b bg-white md:hidden">
+                <div class="flex flex-col gap-3 px-6 py-4">
+                    <a href="/blogs" data-blazor-navigate="false" target="_self" class="py-2">Tin tức</a>
+                    <a href="#about" class="py-2">Về chúng tôi</a>
+                    <a href="#services" class="py-2">Dịch vụ</a>
+                    <a href="#fleet" class="py-2">Đội xe</a>
+                    <a href="#contact" class="py-2">Liên hệ</a>
+                </div>
+            </div>
 
             @Body
         </main>
     </div>
 </div>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById('menuBtn');
+        const menu = document.getElementById('mobileNav');
+        if (!btn || !menu) return;
+        btn.onclick = () => menu.classList.toggle('hidden');
+    });
+</script>
