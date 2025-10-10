@@ -5,12 +5,22 @@
     <meta property="og:description" content="@PageDescription" />
     <meta property="og:image" content="@PageImage" />
     <meta property="og:url" content="@Nav.Uri" />
+    @if (Unrobots)
+    {
+        <meta name="robots" content="noindex, nofollow" />
+    }
+    else
+    {
+        <meta name="robots" content="index, follow" />
+
+    }
 </HeadContent>
 
 @code {
     [Parameter] public string? Title { get; set; }
     [Parameter] public string? Description { get; set; }
     [Parameter] public string? Image { get; set; }
+    [Parameter] public bool Unrobots { get; set; } = true;
     [Inject] public NavigationManager Nav { get; set; }
 
 

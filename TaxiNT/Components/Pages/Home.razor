@@ -2,16 +2,12 @@
 @layout MainLayoutClient
 @rendermode @(new InteractiveServerRenderMode(prerender: true))
 
-<HeadContent>
-    <meta name="robots" content="index, follow" />
-</HeadContent>
-
 <SeoHeaderComponent Title="Trang chủ - Taxi Nam Thắng"
                     Description="Taxi Nam Thắng cung cấp dịch vụ đặt xe taxi điện tiết kiệm tại khu vực Kiên Giang, Rạch Giá, Hà Tiên, Phú Quốc, Vĩnh Long, Cần Thơ, Bạc Liêu, Cà Mau, An Giang và các tỉnh miền tây. Phục vụ 24/7, xe đời mới, tài xế thân thiện, giá rẻ."
-                    Image="imgs/customers/homepage.jpg" />
+                    Image="imgs/customers/homepage.jpg" Unrobots="false" />
 
 <!-- Hero -->
-<main class="mx-auto max-w-7xl px-6 py-12">
+<main class="mx-auto max-w-7xl px-4 py-12">
     <section class="grid items-center gap-8 lg:grid-cols-2">
         <div>
             <h2 class="text-3xl leading-tight font-extrabold sm:text-4xl">Taxi Nam Thắng — Di chuyển an toàn, đến nơi đúng giờ</h2>
@@ -45,9 +41,9 @@
         </div>
     </section>
     <!-- About -->
-    <section id="about" class="mt-16 rounded-xl bg-white p-6 shadow-sm">
+    <section id="about" class="mt-16 rounded-xl bg-white p-3 shadow-sm">
         <h3 class="text-2xl font-semibold">Về Taxi Nam Thắng</h3>
-        <p class="mt-3 text-gray-600">Với hơn 10 năm kinh nghiệm phục vụ hành khách trong và ngoài tỉnh, Taxi Nam Thắng cam kết mang đến trải nghiệm di chuyển an toàn, sạch sẽ và đúng giờ. Đội ngũ tài xế của chúng tôi được đào tạo bài bản, xe được bảo trì định kỳ và trang bị tiện nghi cơ bản.</p>
+        <p class="mt-3 text-gray-600">Trực thuộc <a href="https://namthanggroup.vn/" class="text-red-700" target="_blank">Tập đoàn Nam Thắng</a>. Với hơn 10 năm kinh nghiệm phục vụ hành khách trong và ngoài tỉnh, Taxi Nam Thắng cam kết mang đến trải nghiệm di chuyển an toàn, sạch sẽ và đúng giờ. Đội ngũ tài xế của chúng tôi được đào tạo bài bản, xe được bảo trì định kỳ và trang bị tiện nghi cơ bản.</p>
 
         <div class="mt-6 grid gap-4 md:grid-cols-3">
             <div class="rounded-lg border p-4">
@@ -169,9 +165,9 @@
 
     </section>
     <!-- Contact -->
-    <section id="contact" class="mt-10 rounded-xl bg-white p-6 shadow-sm">
+    <section id="contact" class="mt-10 rounded-xl bg-white p-3 shadow-sm">
         <h3 class="text-xl font-semibold">Liên hệ</h3>
-        <div class="mt-4 grid gap-4 md:grid-cols-4">
+        <div class="mt-4 grid gap-4 md:grid-cols-3">
             <div>
                 <p class="mb-2 text-lg font-semibold">Social</p>
                 <div class="flex items-center gap-3">
@@ -184,12 +180,13 @@
                     </a>
 
                     <!-- Zalo -->
-                    <a href="" target="_blank"
+                    <a href="https://zalo.me/namthangrachgia" target="_blank"
                        class="transform rounded-full bg-sky-50 p-2 text-sky-500 transition duration-200 hover:scale-110 hover:bg-sky-100 hover:text-sky-700">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="h-7 w-7" fill="currentColor">
                             <path d="M24 4C12.954 4 4 12.954 4 24c0 11.046 8.954 20 20 20 3.248 0 6.303-.775 9.02-2.15l5.893 2.015a1 1 0 0 0 1.289-1.27l-1.87-5.388A19.93 19.93 0 0 0 44 24c0-11.046-8.954-20-20-20zm3.5 28h-3l-4-10h3l2.5 6.5L28.5 22h3l-4 10zm-9.7 0h-2.8v-2.1l5.2-7.9H15v-2.6h8.2v2.1l-5.4 8.2h5.5V32zm16.4 0h-5.4v-2.6h5.4V32zm0-4.5h-5.4v-6h5.4v2.5H29v1h5.2v2.5z" />
                         </svg>
                     </a>
+
                     <!-- Youtube -->
                     <a href="https://www.youtube.com/@@namthanggroup5444/" target="_blank"
                        class="transform rounded-full bg-red-100 p-2 text-red-600 transition duration-200 hover:scale-110 hover:bg-red-200 hover:text-red-800">
@@ -202,25 +199,28 @@
             </div>
             <div>
                 <p class="font-semibold">Hotline</p>
-                <p class="mt-1 text-gray-600">Rạch Giá: 02973 69 69 69</p>
-                <p class="mt-1 text-gray-600">Hà Tiên: *5656</p>
-                <p class="mt-1 text-gray-600">Phú Quốc: 02973 75 75 75</p>
-                <p class="mt-1 text-gray-600">Bạc Liêu: 02913 75 75 75</p>
-                <p class="mt-1 text-gray-600">Vĩnh Long: 02913 59 59 59</p>
-                <p class="mt-1 text-gray-600">Sóc Trăng: 02913 69 69 69</p>
-                <p class="mt-1 text-gray-600">Cần Thơ: *6869</p>
-                <p class="mt-1 text-gray-600">An Giang: 02973 56 56 56</p>
-                <p class="mt-1 text-gray-600">Hậu Giang: 02973 95 95 95</p>
-                <p class="mt-1 text-gray-600">Cà Mau: 02903 56 56 56</p>
+                <ul class="mt-2 space-y-1 text-gray-600">
+                    <li>Rạch Giá: 02973 69 69 69 <a href="tel:02973757575" class="text-green-500">Gọi ngay</a></li>
+                    <li>Hà Tiên: *5656 <a href="tel:*5656" class="text-green-500">Gọi ngay</a></li>
+                    <li>Phú Quốc: 02973 75 75 75 <a href="tel:02973757575" class="text-green-500">Gọi ngay</a></li>
+
+                    <li>An Giang: 02973 56 56 56 <a href="tel:02973565656" class="text-green-500">Gọi ngay</a></li>
+                    <li>Cà Mau: 02903 56 56 56 <a href="tel:02903565656" class="text-green-500">Gọi ngay</a></li>
+                    <li>Bạc Liêu: 02913 75 75 75 <a href="tel:02913757575" class="text-green-500">Gọi ngay</a></li>
+                    <li>Vĩnh Long: 02913 59 59 59 <a href="tel:02913595959" class="text-green-500">Gọi ngay</a></li>
+                    <li>Hậu Giang: 02973 95 95 95 <a href="tel:02973959595" class="text-green-500">Gọi ngay</a></li>
+                    <li>Sóc Trăng: 02913 69 69 69 <a href="tel:02913696969" class="text-green-500">Gọi ngay</a></li>
+                    <li>Cần Thơ: *6869 <a href="tel:*6869" class="text-green-500">Gọi ngay</a></li>
+                </ul>
             </div>
             <div>
                 <p class="font-semibold">Email</p>
+                <p class="mt-1 text-gray-600">namthanggroup2021@gmail.com</p>
                 <p class="mt-1 text-gray-600">it.support@namthanggroup.vn</p>
-            </div>
-            <div >
-                <p class="text-lg font-semibold">Trụ sở chính</p>
+
+                <p class="mt-2 font-semibold">Địa chỉ</p>
                 <p class="mt-1 text-gray-600">
-                    Đường số 3, Ấp Sua Đũa, Xã Vĩnh Hòa Hiệp, Huyện Châu Thành, Tỉnh Kiên Giang
+                    Trụ sở chính: Đường số 3, Ấp Sua Đũa, Xã Vĩnh Hòa Hiệp, Huyện Châu Thành, Tỉnh Kiên Giang
                 </p>
                 <div class="mt-4 h-35 w-full overflow-hidden rounded-xl border shadow-lg">
                     <iframe class="h-full w-full"
