@@ -2,9 +2,13 @@
 @layout MainLayoutClient
 @rendermode @(new InteractiveServerRenderMode(prerender: true))
 
-<SeoHeaderComponent Title="Taxi Nam Thắng – Taxi Kiên Giang, Rạch Giá, Hà Tiên, Phú Quốc, Vĩnh Long, Cần Thơ, Bạc Liêu, Cà Mau, An Giang nhanh chóng, an toàn, giá rẻ"
-                    Description="Taxi Nam Thắng cung cấp dịch vụ taxi tại Kiên Giang, Rạch Giá, Hà Tiên, Phú Quốc, Vĩnh Long, Cần Thơ, Bạc Liêu, Cà Mau, An Giang. Phục vụ 24/7, xe đời mới, tài xế thân thiện, giá rẻ."
-                    Image="./imgs/cusomters/homepage.jpg" />
+<HeadContent>
+    <meta name="robots" content="index, follow" />
+</HeadContent>
+
+<SeoHeaderComponent Title="Trang chủ - Taxi Nam Thắng"
+                    Description="Taxi Nam Thắng cung cấp dịch vụ đặt xe taxi điện tiết kiệm tại khu vực Kiên Giang, Rạch Giá, Hà Tiên, Phú Quốc, Vĩnh Long, Cần Thơ, Bạc Liêu, Cà Mau, An Giang và các tỉnh miền tây. Phục vụ 24/7, xe đời mới, tài xế thân thiện, giá rẻ."
+                    Image="imgs/customers/homepage.jpg" />
 
 <!-- Hero -->
 <main class="mx-auto max-w-7xl px-6 py-12">
@@ -19,17 +23,17 @@
             </div>
 
             <div class="mt-8 grid grid-cols-3 gap-4 sm:grid-cols-3">
-                <div class="rounded-lg p-4 text-center text-gray-800 shadow">
+                <div class="rounded-lg p-2 text-center text-gray-800 shadow sm:p-4">
                     <div class="text-2xl font-bold">24/7</div>
                     <div class="text-xs opacity-80">Hỗ trợ</div>
                 </div>
 
-                <div class="rounded-lg bg-emerald-500 p-4 text-center text-white shadow">
-                    <div class="text-2xl font-bold">300+</div>
-                    <div class="text-xs opacity-80">Tuyến đường/Ngày</div>
+                <div class="rounded-lg bg-emerald-500 p-2 text-center text-white shadow sm:p-4">
+                    <div class="text-2xl font-bold">9000+</div>
+                    <div class="text-xs opacity-80">Cuốc xe/Ngày</div>
                 </div>
 
-                <div class="rounded-lg bg-yellow-400 p-4 text-center text-gray-800 shadow">
+                <div class="rounded-lg bg-yellow-400 p-2 text-center text-gray-800 shadow sm:p-4">
                     <div class="text-2xl font-bold">4.9★</div>
                     <div class="text-xs opacity-80">Đánh giá</div>
                 </div>

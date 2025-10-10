@@ -43,5 +43,18 @@ public partial class taxiNTDBContext : IdentityDbContext<AppUser>
 
 //Publish project: dotnet publish -c Release --output ./Publish TaxiNT.csproj
 /* 
-   npx @tailwindcss/cli -i ./TaxiNT/TailwindImport/input.css -o ./TaxiNT/wwwroot/css/tailwindcss.css --watch 
+npx @tailwindcss/cli -i ./TaxiNT/TailwindImport/input.css -o ./TaxiNT/wwwroot/css/tailwindcss.css --watch 
+*/
+
+/*
+
+ * HOSTING
+   Control panel	https://103.131.74.22:8443 hay https://taxinamthang.com:8443
+   Username	taxinamthang.com
+   Password	RB49wnTp3Eu8 
+
+ * DOMAIN
+   Control panel	https://support.pavietnam.vn/login.php
+   Username	namthanggroup2021@gmail.com
+   Password	NamThang@01 
 */

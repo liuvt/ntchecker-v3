@@ -14,7 +14,7 @@
     [Inject] public NavigationManager Nav { get; set; }
 
 
-    private string PageTitle => Title ?? "Taxi Nam Thắng – Taxi Kiên Giang nhanh chóng, an toàn, giá rẻ";
-    private string PageDescription => Description ?? "Dịch vụ taxi Nam Thắng - gọi xe nhanh, giá rẻ, phục vụ 24/7 tại Kiên Giang.";
-    private string PageImage => Image ?? "https://taxinamthang.com/imgs/og-thumbnail.jpg";
+    private string PageTitle => Title ?? "Taxi Nam Thắng – nhanh chóng, an toàn, giá rẻ";
+    private string PageDescription => Description ?? "Taxi Nam Thắng cung cấp dịch vụ taxi tại Kiên Giang, Rạch Giá, Hà Tiên, Phú Quốc, Vĩnh Long, Cần Thơ, Bạc Liêu, Cà Mau, An Giang. Phục vụ 24/7, xe đời mới, tài xế thân thiện, giá rẻ.";
+    private string PageImage => $"{Nav.Uri}{Image}";
 }

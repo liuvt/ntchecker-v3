@@ -4,6 +4,9 @@
 <HeadContent>
     <meta name="robots" content="noindex, nofollow" />
 </HeadContent>
+<SeoHeaderComponent Title="Lịch sử phiếu Checker v3.1 - Taxi Nam Thắng"
+                    Description="@($"Xem lại phiếu Checker tài xế {userId}, ngày {date}")"
+                    Image="imgs/customers/homepage.jpg" />
 
 <CheckerDetailHistoryComponent userId="@userId" date="@date" @rendermode="new InteractiveWebAssemblyRenderMode(prerender: true)" />
 
