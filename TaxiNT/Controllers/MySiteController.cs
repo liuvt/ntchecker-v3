@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Text.Json;
 using TaxiNT.Data.Models;
@@ -6,6 +7,7 @@ using TaxiNT.Data.Models;
 namespace TaxiNT.Controllers;
 
 // Các đường dẫn có thể đánh dấu google bot không được truy cập hoặc được truy cập
+[AllowAnonymous]
 [Route("robots.txt")]
 [ApiController]
 public class RobotsController : ControllerBase
@@ -42,6 +44,7 @@ public class RobotsController : ControllerBase
 }
 
 // Sở đồ web cho Google
+[AllowAnonymous]
 [Route("sitemap.xml")]
 [ApiController]
 public class SitemapController : ControllerBase
@@ -99,6 +102,7 @@ public class SitemapController : ControllerBase
 }
 
 // Sở đồ Video cho Google. Đọc nội dung file json để lấy thông tin video chạy SEO
+[AllowAnonymous]
 [Route("video-sitemap.xml")]
 [ApiController]
 public class VideoSitemapController : ControllerBase
@@ -248,4 +252,34 @@ public class VideoSitemapController : ControllerBase
     */
     private static string Escape(string? text)
         => System.Security.SecurityElement.Escape(text ?? string.Empty);
+}
+
+// file quản cáo ads.txt cho Google: google.com, pub-2723913688114916, DIRECT, f08c47fec0942fa0
+[AllowAnonymous]
+[Route("ads.txt")]
+[ApiController]
+public class AdsController : ControllerBase
+{
+    [HttpGet]
+    [ResponseCache(Duration = 86400)]
+    public IActionResult Index()
+    {
+        const string content = "google.com, pub-2723913688114916, DIRECT, f08c47fec0942fa0";
+        return Content(content, "text/plain; charset=utf-8");
+    }
+}
+
+// file xác thực googlef870cd40329510dd.html cho Google: google-site-verification: googlef870cd40329510dd.html
+[AllowAnonymous]
+[Route("googlef870cd40329510dd.html")]
+[ApiController]
+public class GoogleVerificationController : ControllerBase
+{
+    [HttpGet]
+    [ResponseCache(Duration = 86400)]
+    public IActionResult Verify()
+    {
+        const string content = "google-site-verification: googlef870cd40329510dd.html";
+        return Content(content, "text/plain; charset=utf-8");
+    }
 }
