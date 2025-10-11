@@ -3,6 +3,8 @@
 ################################################################################
 
 /.vs
+/SQL
+/SEOExtensions
 /node_modules/.bin/mkdirp
 /node_modules
 /node_modules/.bin
