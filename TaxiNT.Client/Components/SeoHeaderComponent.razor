@@ -26,5 +26,5 @@
 
     private string PageTitle => Title ?? "Taxi Nam Thắng – nhanh chóng, an toàn, giá rẻ";
     private string PageDescription => Description ?? "Taxi Nam Thắng cung cấp dịch vụ taxi tại Kiên Giang, Rạch Giá, Hà Tiên, Phú Quốc, Vĩnh Long, Cần Thơ, Bạc Liêu, Cà Mau, An Giang. Phục vụ 24/7, xe đời mới, tài xế thân thiện, giá rẻ.";
-    private string PageImage => $"{Nav.Uri}{Image}";
+    private string PageImage => $"{Nav.Uri}{Image}" ?? $"{Nav.Uri}imgs/customers/homepage.jpg";
 }
