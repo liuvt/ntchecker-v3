@@ -2,20 +2,28 @@
 @layout MainLayoutClient
 @rendermode @(new InteractiveServerRenderMode(prerender: true))
 
-<SeoHeaderComponent Title="Trang chủ - Taxi Nam Thắng"
-                    Description="Taxi Nam Thắng cung cấp dịch vụ đặt xe taxi điện tiết kiệm tại khu vực Kiên Giang, Rạch Giá, Hà Tiên, Phú Quốc, Vĩnh Long, Cần Thơ, Bạc Liêu, Cà Mau, An Giang và các tỉnh miền tây. Phục vụ 24/7, xe đời mới, tài xế thân thiện, giá rẻ."
+<SeoHeaderComponent Title="Trang chủ | Taxi Nam Thắng – Đặt taxi Rạch Giá, Kiên Giang, Hà Tiên, Phú Quốc, Cần Thơ, Bạc Liêu, Cà Mau, Vĩnh Long, An Giang"
+                    Description="Taxi Nam Thắng – Dịch vụ đặt taxi nhanh tại Rạch Giá, Kiên Giang, Hà Tiên, Phú Quốc, Cần Thơ, Bạc Liêu, Cà Mau, Vĩnh Long, An Giang. Xe điện đời mới, thân thiện môi trường, tài xế chuyên nghiệp, giá rẻ nhất khu vực."
                     Image="imgs/customers/homepage.jpg" Unrobots="false" />
 
 <!-- Hero -->
-<main class="mx-auto max-w-7xl px-4 py-12">
+<main class="mx-auto max-w-7xl px-4 py-3">
     <section class="grid items-center gap-8 lg:grid-cols-2">
         <div>
-            <h2 class="text-3xl leading-tight font-extrabold sm:text-4xl">Taxi Nam Thắng — Di chuyển an toàn, đến nơi đúng giờ</h2>
-            <p class="mt-4 text-gray-600">Chúng tôi cung cấp dịch vụ taxi chuyên nghiệp, đội xe mới, tài xế thân thiện và giá cả minh bạch. Hỗ trợ đặt xe qua điện thoại, website và QR pay.</p>
+            <h2 class="text-3xl leading-tight font-extrabold sm:text-4xl">Đặt Taxi Nam Thắng – Di chuyển an toàn, đúng giờ, giá rẻ</h2>
+            <p class="mt-4 text-gray-600">
+                <strong>Taxi Nam Thắng</strong> cung cấp dịch vụ
+                <strong>đặt taxi tại Rạch Giá, Kiên Giang</strong>
+                cùng các khu vực lân cận như
+                <strong>Hà Tiên, Phú Quốc, Cần Thơ, Bạc Liêu, Cà Mau, Vĩnh Long, An Giang</strong>.
+                Chúng tôi mang đến trải nghiệm
+                <strong>đặt xe nhanh chóng – giá minh bạch – tài xế thân thiện</strong>,
+                với dòng xe điện đời mới, thân thiện môi trường.
+            </p>
 
             <div class="mt-6 flex flex-wrap gap-3">
-                <a href="#booking" class="rounded-md bg-lime-500 px-5 py-3 text-white shadow">Đặt xe ngay</a>
-                <a href="#contact" class="rounded-md border px-5 py-3">Liên hệ tư vấn</a>
+                <a href="#booking" class="rounded-md bg-lime-500 px-5 py-3 text-white shadow">Đặt xe taxi ngay</a>
+                <a href="#contact" class="rounded-md border px-5 py-3">Liên hệ tổng đài</a>
             </div>
 
             <div class="mt-8 grid grid-cols-3 gap-4 sm:grid-cols-3">
@@ -37,9 +45,8 @@
         </div>
 
         <div class="order-first mt-12 h-full rounded-lg lg:order-last">
-            <!-- <img src="./imgs/customers/homepage.jpg" alt="Taxi" class="h-64 w-full rounded-lg object-cover sm:h-72" /> -->
             <video class="h-64 w-full object-contain sm:h-72"
-                   src="./videos/TAXITHUONGQUYEN.mp4"
+                   src="./videos/GIOITHIEUTAXINAMTHANG.mp4"
                    muted
                    autoplay
                    loop
@@ -49,10 +56,14 @@
             </video>
         </div>
     </section>
+
     <!-- About -->
-    <section id="about" class="mt-16 rounded-xl bg-white p-3 shadow-sm">
-        <h3 class="text-2xl font-semibold">Về Taxi Nam Thắng</h3>
-        <p class="mt-3 text-gray-600">Trực thuộc <a href="https://namthanggroup.vn/" class="text-red-700" target="_blank">Tập đoàn Nam Thắng</a>. Với hơn 10 năm kinh nghiệm phục vụ hành khách trong và ngoài tỉnh, Taxi Nam Thắng cam kết mang đến trải nghiệm di chuyển an toàn, sạch sẽ và đúng giờ. Đội ngũ tài xế của chúng tôi được đào tạo bài bản, xe được bảo trì định kỳ và trang bị tiện nghi cơ bản.</p>
+    <section id="about" aria-label="Thông tin về xe điện Taxi Nam Thắng" class="mt-16 rounded-xl bg-white p-3 shadow-sm">
+        <h3 class="text-xl font-semibold">Về Taxi Nam Thắng</h3>
+        <p class="mt-3 text-gray-600">
+            Trực thuộc <a href="https://namthanggroup.vn/" class="text-red-700" target="_blank" rel="noopener noreferrer">Tập đoàn Nam Thắng</a>, <strong>Taxi Nam Thắng</strong> đã phục vụ hành khách tại <strong>Rạch Giá, Kiên Giang</strong> và các khu vực lân cận như <strong>Hà Tiên, Phú Quốc, Cần Thơ, Bạc Liêu, Cà Mau, Vĩnh Long, An Giang</strong> hơn 10 năm. Chúng tôi cung cấp <strong>dịch vụ taxi điện</strong> an toàn, nhanh chóng và giá minh bạch. Mỗi xe đều được bảo trì định kỳ, trang bị tiện nghi cơ bản, đảm bảo trải nghiệm thoải mái cho hành khách.
+            Đội ngũ tài xế thân thiện, được đào tạo chuyên nghiệp, luôn tuân thủ quy định giao thông và ưu tiên sự an toàn cho khách hàng. Khách có thể <a href="#booking" class="text-lime-500">đặt xe nhanh chóng</a> qua form trực tuyến hoặc hotline 24/7. Với phương châm “An toàn – Nhanh chóng – Giá rẻ”, Taxi Nam Thắng là lựa chọn tin cậy cho mọi chuyến đi trong và ngoài tỉnh.
+        </p>
 
         <div class="mt-6 grid gap-4 md:grid-cols-3">
             <div class="rounded-lg border p-4">
@@ -69,8 +80,9 @@
             </div>
         </div>
     </section>
+
     <!-- Services -->
-    <section id="services" class="mt-10">
+    <section id="services" aria-label="Dịch vụ xe điện Taxi Nam Thắng cung cấp" class="mt-10">
         <h3 class="text-xl font-semibold">Dịch vụ của chúng tôi</h3>
         <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div class="rounded-lg bg-white p-4 shadow-sm">
@@ -91,22 +103,23 @@
             </div>
         </div>
     </section>
+
     <!-- Fleet -->
-    <section id="fleet" class="mt-10 rounded-xl bg-white p-6 shadow-sm">
+    <section id="fleet" aria-label="Xe điện VF5, VFe34, VF6, VF7 sử dụng phục vụ khách hàng tại Taxi Nam Thắng" class="mt-10 rounded-xl bg-white p-6 shadow-sm">
         <h3 class="text-xl font-semibold">Đội xe</h3>
         <p class="mt-2 text-sm text-gray-500">Đa dạng loại xe đáp ứng mọi nhu cầu.</p>
         <div class="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
             <div class="overflow-hidden rounded-lg border">
                 <img src="./imgs/customers/vf5.jpg" alt="Xe 4 chỗ" class="h-40 w-full object-cover" />
                 <div class="p-4">
-                    <h4 class="font-semibold">Xe điện 4 chỗ - VF 5</h4>
+                    <h4 class="font-semibold">Xe điện 4 chỗ - VF5</h4>
                     <p class="mt-1 text-sm text-gray-500">Tiện lợi cho di chuyển cá nhân hoặc gia đình nhỏ.</p>
                 </div>
             </div>
             <div class="overflow-hidden rounded-lg border">
                 <img src="./imgs/customers/vf6.jpg" alt="Xe 5 chỗ" class="h-40 w-full object-cover" />
                 <div class="p-4">
-                    <h4 class="font-semibold">Xe điện 5 chỗ - VF 6</h4>
+                    <h4 class="font-semibold">Xe điện 5 chỗ - VF6</h4>
                     <p class="mt-1 text-sm text-gray-500">Phù hợp cho nhóm và gia đình lớn.</p>
                 </div>
             </div>
@@ -119,10 +132,11 @@
             </div>
         </div>
     </section>
+
     <!-- Booking form (mock) -->
-    <section id="booking" class="bg-gradient-to-r mt-10 rounded-xl from-white to-blue-50 p-6">
+    <section id="booking" aria-label="Điền thông tin để đặt xe taxi điện nhanh Taxi Nam Thắng" class="bg-gradient-to-r mt-10 rounded-xl from-white to-blue-50 p-6">
         <h3 class="text-xl font-semibold">Đặt xe nhanh</h3>
-        <p class="mt-1 text-sm text-gray-500">Nhập thông tin cơ bản, tài xế sẽ liên hệ xác nhận.</p>
+        <p class="mt-1 text-sm text-gray-500">Nhập thông tin cơ bản để đặt <strong>taxi điện Taxi Nam Thắng</strong>, tài xế sẽ liên hệ xác nhận nhanh chóng.</p>
 
         <EditForm Model="@order" OnValidSubmit="@HandleSubmit">
             <DataAnnotationsValidator />
@@ -171,15 +185,16 @@
         {
             <p class="mt-3 font-medium text-green-600">@message</p>
         }
-
     </section>
+
     <!-- Contact -->
-    <section id="contact" class="mt-10 rounded-xl bg-white p-3 shadow-sm">
+    <section id="contact" aria-label="Thông tin liên hệ đặt xe taxi điện nhanh Taxi Nam Thắng" class="mt-10 rounded-xl bg-white p-3 shadow-sm">
         <h3 class="text-xl font-semibold">Liên hệ</h3>
         <div class="mt-4 grid gap-4 md:grid-cols-3">
             <div>
-                <p class="mb-2 text-lg font-semibold">Social</p>
+                <p class="font-semibold">Kênh truyền thông</p>
                 <div class="flex items-center gap-3">
+
                     <!-- Facebook -->
                     <a href="https://www.facebook.com/tapdoannamthang/" target="_blank"
                        class="transform rounded-full bg-blue-50 p-2 text-blue-600 transition duration-200 hover:scale-110 hover:bg-blue-100 hover:text-blue-800">
@@ -243,15 +258,24 @@
         </div>
     </section>
 
-    <section id="contact" class="bg-gradient-to-r mt-10 rounded-xl from-white to-blue-50 p-3 shadow-sm">
-        <h3 class="text-xl font-semibold">Đánh giá của khách hàng</h3>
+    <section id="review" aria-label="Đánh giá trải nghiệm của khách hàng đối với Taxi Nam Thắng" class="bg-gradient-to-r mt-10 rounded-xl from-white to-blue-50 p-3 shadow-sm">
+        <h3 class="text-xl font-semibold">Đánh giá khách hàng về Taxi Nam Thắng – Đặt xe Rạch Giá, Kiên Giang và các tỉnh lân cận</h3>
+        <p class="mt-2 text-sm text-gray-500">
+            Khách hàng tại Rạch Giá, Kiên Giang, Hà Tiên, Phú Quốc, Bạc Liêu, Cà Mau, Vĩnh Long và An Giang đều đánh giá cao <strong>Taxi Nam Thắng</strong> về dịch vụ đặt xe nhanh chóng, an toàn và giá cả hợp lý. Việc đặt taxi qua hotline hoặc <a href="#booking" class="text-lime-500">form trực tuyến</a> rất tiện lợi, xe đời mới, sạch sẽ và tài xế thân thiện.
+        </p>
+        <p class="mt-2 text-sm text-gray-500">
+            Với hơn <strong>9000 cuốc xe mỗi ngày</strong>, Taxi Nam Thắng cam kết mang đến trải nghiệm di chuyển an toàn, đúng giờ. Khách hàng đặc biệt hài lòng với dịch vụ <strong>xe điện thân thiện môi trường</strong> và giá rẻ, phù hợp nhu cầu đi lại hàng ngày.
+        </p>
+        <p class="mt-2 text-sm text-gray-500">
+            Những đánh giá 4–5 sao từ khách hàng thực tế giúp Taxi Nam Thắng khẳng định uy tín, chất lượng dịch vụ và sự tin cậy trong việc đặt taxi Rạch Giá, Kiên Giang và các tỉnh lân cận. Hãy trải nghiệm dịch vụ ngay hôm nay để cảm nhận sự khác biệt trong mỗi chuyến đi.
+        </p>
         <div class="mx-auto max-w-6xl px-4 text-center">
             <div class="grid gap-6 md:grid-cols-3">
                 <!-- Review 1 -->
                 <div class="rounded-2xl bg-white p-6 shadow">
                     <div class="flex items-center space-x-4">
                         <img src="./imgs/customers/trung-review.jpg"
-                             alt="Avatar"
+                             alt="Avatar trung"
                              class="h-14 w-14 rounded-full object-cover ring-2 ring-green-400" />
                         <div class="text-left">
                             <p class="font-semibold text-gray-800">Danh Thế Trung</p>
@@ -271,7 +295,7 @@
                 <div class="rounded-2xl bg-white p-6 shadow">
                     <div class="flex items-center space-x-4">
                         <img src="./imgs/customers/ngoan-review.jpg"
-                             alt="Avatar"
+                             alt="Avatar ngoan"
                              class="h-14 w-14 rounded-full object-cover ring-2 ring-green-400" />
                         <div class="text-left">
                             <p class="font-semibold text-gray-800">Nguyễn Văn Ngoan</p>
@@ -291,7 +315,7 @@
                 <div class="rounded-2xl bg-white p-6 shadow">
                     <div class="flex items-center space-x-4">
                         <img src="./imgs/customers/truong-review.jpg"
-                             alt="Avatar"
+                             alt="Avatar truong"
                              class="h-14 w-14 rounded-full object-cover ring-2 ring-green-400" />
                         <div class="text-left">
                             <p class="font-semibold text-gray-800">Mai Nhựt Trường</p>
@@ -309,6 +333,7 @@
             </div>
         </div>
     </section>
+
     <!-- Footer -->
     <footer class="mt-10 text-center text-sm text-gray-500">
         © Copyright 2025 vanlt. All rights reserved. <span id="year"></span> Bản quyền thuộc về Taxi Nam Thắng.

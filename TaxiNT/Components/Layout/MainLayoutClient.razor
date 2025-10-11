@@ -16,16 +16,17 @@
                     </a>
 
 
-                    <nav class="hidden items-center gap-6 text-sm md:flex">
-                        <a href="/blogs" data-blazor-navigate="false" target="_self" onclick="window.location.href='/blogs'; return false;" class="hover:text-blue-600">Tin tức</a>
-                        <a href="#about" onclick="window.location.href='/#about'; return false;" class="hover:text-blue-600">Về chúng tôi</a>
-                        <a href="#services" onclick="window.location.href='/#services'; return false;" class="hover:text-blue-600">Dịch vụ</a>
-                        <a href="#fleet" onclick="window.location.href='/#fleet'; return false;" class="hover:text-blue-600">Đội xe</a>
-                        <a href="#contact" onclick="window.location.href='/#contact'; return false;" class="hover:text-blue-600">Liên hệ</a>
-                    </nav>
-
                     <div class="flex items-center gap-4">
-                        <a href="#booking" class="hidden rounded-md bg-lime-500 px-4 py-2 text-white shadow md:inline-block">Đặt xe ngay</a>
+                        <!-- Nav desktop -->
+                        <nav class="hidden items-center gap-4 text-sm md:flex">
+                            <a href="/blogs" data-blazor-navigate="false" target="_self" onclick="window.location.href='/blogs'; return false;" class="hover:text-blue-600">Tin tức</a>
+                            <a href="#about" onclick="window.location.href='/#about'; return false;" class="hover:text-blue-600">Về chúng tôi</a>
+                            <a href="#services" onclick="window.location.href='/#services'; return false;" class="hover:text-blue-600">Dịch vụ</a>
+                            <a href="#fleet" onclick="window.location.href='/#fleet'; return false;" class="hover:text-blue-600">Đội xe</a>
+                            <a href="#contact" onclick="window.location.href='/#contact'; return false;" class="hover:text-blue-600">Liên hệ</a>
+                        </nav>
+
+                        <!-- Mobile menu button -->
                         <button class="rounded-md p-2 hover:bg-gray-100 md:hidden" id="menuBtn">☰</button>
                     </div>
                 </div>

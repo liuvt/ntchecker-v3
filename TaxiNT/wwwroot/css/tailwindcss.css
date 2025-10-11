@@ -813,9 +813,6 @@
   .py-6 {
     padding-block: calc(var(--spacing) * 6);
   }
-  .py-12 {
-    padding-block: calc(var(--spacing) * 12);
-  }
   .py-16 {
     padding-block: calc(var(--spacing) * 16);
   }
@@ -966,6 +963,9 @@
   }
   .text-green-700 {
     color: var(--color-green-700);
+  }
+  .text-lime-500 {
+    color: var(--color-lime-500);
   }
   .text-lime-600 {
     color: var(--color-lime-600);
@@ -1389,11 +1389,6 @@
   .md\:inline {
     @media (width >= 48rem) {
       display: inline;
-    }
-  }
-  .md\:inline-block {
-    @media (width >= 48rem) {
-      display: inline-block;
     }
   }
   .md\:w-1\/2 {
