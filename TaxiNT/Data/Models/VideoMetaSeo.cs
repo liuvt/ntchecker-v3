@@ -30,5 +30,8 @@ namespace TaxiNT.Data.Models
 
         [JsonPropertyName("publication_date")]
         public DateTime Publication_Date { get; set; } = DateTime.MinValue;
+        [JsonPropertyName("locationVideoShow")]
+        public string locationVideoShow { get; set; } = string.Empty;
+
     }
 }

@@ -213,7 +213,7 @@ public class VideoSitemapController : ControllerBase
                     : meta.Publication_Date;
 
                 sb.AppendLine("  <url>");
-                sb.AppendLine($"    <loc>{Escape($"{baseUrl}/videos/{fileName}")}</loc>");
+                sb.AppendLine($"    <loc>{Escape(meta.locationVideoShow)}</loc>");
                 sb.AppendLine($"    <lastmod>{lastMod}</lastmod>");
                 sb.AppendLine("    <video:video>");
                 sb.AppendLine($"      <video:thumbnail_loc>{Escape(thumbUrl)}</video:thumbnail_loc>");
